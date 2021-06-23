@@ -9,4 +9,22 @@
         <cve>CVE-2021-22118</cve>
     </suppress>
 
+  <suppress>
+    <notes>
+      <![CDATA[
+        accessors-smart-1.2.jar (pkg:maven/net.minidev/accessors-smart@1.2, cpe:2.3:a:json-smart_project:json-smart-v1:1.2:*:*:*:*:*:*:*, cpe:2.3:a:json_smart_project:json_smart:1.2:*:*:*:*:*:*:*)
+            ]]>
+    </notes>
+    <cve>CVE-2021-27568</cve>
+  </suppress>
+
+  <suppress>
+    <notes>
+      <![CDATA[
+       commons-io-2.6.jar (pkg:maven/commons-io/commons-io@2.6, cpe:2.3:a:apache:commons_io:2.6:*:*:*:*:*:*:*)
+      ]]>
+    </notes>
+    <cve>CVE-2021-29425</cve>
+  </suppress>
+
 </suppressions>

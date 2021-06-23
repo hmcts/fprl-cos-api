@@ -112,7 +112,7 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 sonarqube {
   properties {
-    property "sonar.projectName", "Reform :: spring-boot-template"
+    property "sonar.projectName", "Family Private Law :: fprl-cos"
     property "sonar.projectKey", "uk.gov.hmcts.reform:fprl-cos"
     property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
   }

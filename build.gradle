@@ -100,12 +100,12 @@ pmd {
 }
 
 jacocoTestReport {
-  executionData(test, integration)
-  reports {
-    xml.enabled = true
-    csv.enabled = false
-    xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
-  }
+//  executionData(test, integration)
+//  reports {
+//    xml.enabled = true
+//    csv.enabled = false
+//    xml.destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+//  }
 }
 
 project.tasks['sonarqube'].dependsOn jacocoTestReport
@@ -222,5 +222,5 @@ bootJar {
 }
 
 wrapper {
-    distributionType = Wrapper.DistributionType.ALL
+  distributionType = Wrapper.DistributionType.ALL
 }

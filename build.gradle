@@ -175,12 +175,46 @@ dependencyCheck {
   }
 }
 
+def versions = [
+  jackson         : '2.12.3',
+  junit           : '5.7.2',
+  junitPlatform   : '1.7.2',
+  lombok          : '1.18.18',
+  feignHttpClient : '10.3.0',
+  pact_version    : '4.1.11',
+  reformLogging   : '5.1.7',
+  springBoot      : springBoot.class.package.implementationVersion,
+  springfoxSwagger: '3.0.0',
+  guava           : '30.1.1-jre'
+]
+
 dependencyManagement {
   dependencies {
     dependency group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.69'
     // CVE-2018-10237 - Unbounded memory allocation
-    dependencySet(group: 'com.google.guava', version: '30.1.1-jre') {
+    dependencySet(group: 'com.google.guava', version: versions.guava) {
       entry 'guava'
+    }
+
+    dependencySet(
+      group: 'com.fasterxml.jackson.core',
+      version: versions.jackson
+    ) {
+      entry 'jackson-core'
+      entry 'jackson-databind'
+    }
+    dependencySet(
+      group: 'com.fasterxml.jackson.datatype',
+      version: versions.jackson
+    ) {
+      entry 'jackson-datatype-jdk8'
+      entry 'jackson-datatype-jsr310'
+    }
+    dependencySet(
+      group: 'com.fasterxml.jackson.module',
+      version: versions.jackson
+    ) {
+      entry 'jackson-module-parameter-names'
     }
   }
 }
@@ -190,15 +224,6 @@ repositories {
   mavenCentral()
   jcenter()
 }
-
-def versions = [
-  junit           : '5.7.2',
-  junitPlatform   : '1.7.2',
-  reformLogging   : '5.1.7',
-  springBoot      : springBoot.class.package.implementationVersion,
-  springfoxSwagger: '3.0.0',
-  pact_version    : '4.1.11'
-]
 
 ext.libraries = [
   junit5: [
@@ -211,6 +236,17 @@ ext.libraries = [
 ]
 
 dependencies {
+
+  implementation "org.projectlombok:lombok:${versions.lombok}"
+  compileOnly("org.projectlombok:lombok:${versions.lombok}")
+  testCompileOnly("org.projectlombok:lombok:${versions.lombok}")
+  annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+  testAnnotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson
+
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
@@ -222,6 +258,18 @@ dependencies {
   implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformLogging
   implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-hystrix', version: '2.2.8.RELEASE'
   implementation 'junit:junit:4.13.1'
+  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson
+  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson
+  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson
+  implementation group: 'io.github.openfeign', name: 'feign-httpclient', version: versions.feignHttpClient
+
+//  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
+//    {
+//      exclude group: 'io.reactivex', module: 'io.reactivex'
+//      exclude group: 'io.reactivex', module: 'rxnetty'
+//      exclude group: 'io.reactivex', module: 'rxnetty-contexts'
+//      exclude group: 'io.reactivex', module: 'rxnetty-servo'
+//    }
 
   compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
   compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.14.1'
@@ -237,10 +285,27 @@ dependencies {
 
   integrationTestImplementation sourceSets.main.runtimeClasspath
   integrationTestImplementation sourceSets.test.runtimeClasspath
+  integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
   functionalTestImplementation sourceSets.main.runtimeClasspath
 
   smokeTestImplementation sourceSets.main.runtimeClasspath
+
+  contractTestCompile group: 'com.google.guava', name: 'guava', version: versions.guava
+  contractTestCompile group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
+  contractTestCompile group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
+  contractTestRuntime group: 'com.google.guava', name: 'guava', version: versions.guava
+  contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'junit5', version: versions.pact_version
+  contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact_version
+
+  contractTestCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
+  contractTestCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+  contractTestCompile("org.junit.jupiter:junit-jupiter-api:${versions.junit}")
+  contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:${versions.junit}")
+  contractTestImplementation("org.junit.jupiter:junit-jupiter-api:${versions.junit}")
+
+  contractTestCompile sourceSets.main.runtimeClasspath
+  contractTestCompile sourceSets.test.runtimeClasspath
 }
 
 mainClassName = 'uk.gov.hmcts.reform.demo.Application'

@@ -176,6 +176,7 @@ dependencyCheck {
 }
 
 def versions = [
+  guava           : '30.1.1-jre',
   jackson         : '2.12.3',
   junit           : '5.7.2',
   junitPlatform   : '1.7.2',
@@ -185,7 +186,7 @@ def versions = [
   reformLogging   : '5.1.7',
   springBoot      : springBoot.class.package.implementationVersion,
   springfoxSwagger: '3.0.0',
-  guava           : '30.1.1-jre'
+  tomcat          : '10.0.6'
 ]
 
 dependencyManagement {
@@ -237,11 +238,11 @@ ext.libraries = [
 
 dependencies {
 
-  implementation "org.projectlombok:lombok:${versions.lombok}"
-  compileOnly("org.projectlombok:lombok:${versions.lombok}")
-  testCompileOnly("org.projectlombok:lombok:${versions.lombok}")
-  annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
-  testAnnotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+  implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+  testCompileOnly group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+  annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
+  testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
   compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
   compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson
@@ -263,19 +264,19 @@ dependencies {
   implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson
   implementation group: 'io.github.openfeign', name: 'feign-httpclient', version: versions.feignHttpClient
 
-//  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
-//    {
-//      exclude group: 'io.reactivex', module: 'io.reactivex'
-//      exclude group: 'io.reactivex', module: 'rxnetty'
-//      exclude group: 'io.reactivex', module: 'rxnetty-contexts'
-//      exclude group: 'io.reactivex', module: 'rxnetty-servo'
-//    }
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.1.2')
+    {
+      exclude group: 'io.reactivex', module: 'io.reactivex'
+      exclude group: 'io.reactivex', module: 'rxnetty'
+      exclude group: 'io.reactivex', module: 'rxnetty-contexts'
+      exclude group: 'io.reactivex', module: 'rxnetty-servo'
+    }
 
   compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
   compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.14.1'
 
-  compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '10.0.6'
-  compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-websocket', version: '10.0.6'
+  compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: versions.tomcat
+  compile group: 'org.apache.tomcat.embed', name: 'tomcat-embed-websocket', version: versions.tomcat
 
   testImplementation libraries.junit5
   testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {

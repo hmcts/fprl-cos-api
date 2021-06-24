@@ -17,14 +17,13 @@ plugins {
   id 'application'
   id 'checkstyle'
   id 'com.github.ben-manes.versions' version '0.39.0'
-  id 'com.jfrog.bintray' version '1.8.4'
-  id 'info.solidsoft.pitest' version '1.5.1'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+//  id 'com.jfrog.bintray' version '1.8.4'
+  id 'info.solidsoft.pitest' version '1.5.2'
+  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
   id 'jacoco'
-  id 'org.flywaydb.flyway' version '7.1.1'
   id 'org.owasp.dependencycheck' version '6.1.6'
   id 'org.sonarqube' version '3.2.0'
-  id 'org.springframework.boot' version '2.3.5.RELEASE'
+  id 'org.springframework.boot' version '2.3.4.RELEASE'
   id 'au.com.dius.pact' version '4.1.8'
 }
 
@@ -378,7 +377,7 @@ dependencies {
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   useJUnit {
-    includeCategories 'uk.gov.hmcts.reform.divorce.orchestration.category.SmokeTest'
+    includeCategories 'uk.gov.hmcts.reform.fprl.category.SmokeTest'
   }
 }
 
@@ -391,27 +390,11 @@ task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dep
   }
 }
 
-task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
-  doFirst(){
-    printf("Available processors:::::::::: " + Runtime.runtime.availableProcessors().intdiv(2).toString())
-  }
-
-  maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
-  forkEvery = 10
-
-  exclude "uk/gov/hmcts/reform/divorce/callback/nightly/pipeline/**"
-  exclude "uk/gov/hmcts/reform/divorce/maintenance/nightly/pipeline/**"
-
-
-  setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
-  setClasspath(sourceSets.integrationTest.runtimeClasspath)
-
-  if (System.getenv('CHANGE_TITLE')?.startsWith('[FAST]')) {
-    useJUnit {
-      excludeCategories 'uk.gov.hmcts.reform.divorce.category.ExtendedTest'
-    }
-  }
-  finalizedBy aggregate
+task functional(type: Test) {
+  description = "Runs functional tests"
+  group = "Verification"
+  testClassesDirs = sourceSets.integrationTest.output.classesDirs
+  classpath = sourceSets.integrationTest.runtimeClasspath
 }
 
 task nightlyFunctional(type: Test, description: 'Runs the Nightly Only Functional tests.', group: 'Verification') {
@@ -422,29 +405,18 @@ task nightlyFunctional(type: Test, description: 'Runs the Nightly Only Functiona
   maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
   forkEvery = 10
 
-  include "uk/gov/hmcts/reform/divorce/callback/nightly/pipeline/**"
-  include "uk/gov/hmcts/reform/divorce/maintenance/nightly/pipeline/**"
-
-
   setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
   setClasspath(sourceSets.integrationTest.runtimeClasspath)
 
-  if (System.getenv('CHANGE_TITLE')?.startsWith('[FAST]')) {
-    useJUnit {
-      excludeCategories 'uk.gov.hmcts.reform.divorce.category.ExtendedTest'
-    }
-  }
   finalizedBy aggregate
 }
 
 pitest {
-  targetClasses = ['uk.gov.hmcts.reform.divorce.orchestration.*']
-  excludedClasses = ['uk.gov.hmcts.reform.divorce.orchestration.config.*',
-                     'uk.gov.hmcts.reform.divorce.orchestration.domain.model.*',
-                     'uk.gov.hmcts.reform.divorce.orchestration.exception.*',
-                     'uk.gov.hmcts.reform.divorce.orchestration.client.*',
-                     'uk.gov.hmcts.reform.divorce.orchestration.management.config.*',
-                     'uk.gov.hmcts.reform.divorce.orchestration.framework.workflow.task.*']
+  targetClasses = ['uk.gov.hmcts.reform.divorce.fprl.*']
+  excludedClasses = [
+    'uk.gov.hmcts.reform.divorce.fprl.config.*',
+    'uk.gov.hmcts.reform.divorce.fprl.models.*',
+  ]
   threads = 10
   outputFormats = ['XML', 'HTML']
   timestampedReports = false
@@ -474,16 +446,8 @@ jacocoTestCoverageVerification {
 project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 def sonarExclusions = [
-  '**uk/gov/hmcts/reform/divorce/orchestration/domain/**/*',
-  '**uk/gov/hmcts/reform/divorce/orchestration/**/config/**/*',
-  '**uk/gov/hmcts/reform/divorce/orchestration/OrchestrationServiceApplication.java',
-  '**uk/gov/hmcts/reform/divorce/orchestration/client/**',
-  '**uk/gov/hmcts/reform/divorce/orchestration/event/**/*',
-  '**uk/gov/hmcts/reform/divorce/orchestration/service/bulk/scan/**/*',
-  '**uk/gov/hmcts/reform/divorce/orchestration/controller/BulkScanController.java',
-  '**uk/gov/hmcts/reform/divorce/orchestration/framework/workflow/task/DefaultTaskContext.java',
-  '**uk/gov/hmcts/reform/divorce/scheduler/model/*',
-  '**uk/gov/hmcts/reform/divorce/scheduler/config/**/*'
+  '**uk/gov/hmcts/reform/fprl/models/**/*',
+  '**uk/gov/hmcts/reform/fprl/**/config/**/*'
 ]
 
 sonarqube {
@@ -514,7 +478,7 @@ task contract(type: Test) {
   useJUnitPlatform()
   testClassesDirs = sourceSets.contractTest.output.classesDirs
   classpath = sourceSets.contractTest.runtimeClasspath
-  include "uk/gov/hmcts/reform/divorce/orchestration/client/**"
+  include "uk/gov/hmcts/reform/fprl/clients/**"
   systemProperty 'pact.rootDir', "pacts"
   environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
 }

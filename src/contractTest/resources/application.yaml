@@ -42,3 +42,23 @@ spring:
 azure:
   application-insights:
     instrumentation-key: ${rpe.AppInsightsInstrumentationKey:00000000-0000-0000-0000-000000000000}
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    uk.gov.hmcts.reform.fprl: DEBUG
+    au.com.dius.pact: DEBUG
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
+
+pba:
+  validation:
+    service:
+      api:
+        baseurl: ${PRD_API_BASEURL:http://localhost:8090}
+
+idam:
+  client:
+    redirect_uri: ${IDAM_API_REDIRECT_URL:http://localhost:8080/authenticated}
+    port: 4503
+    secret: ${IDAM_CLIENT_SECRET:DUMMYSECRET123456789}

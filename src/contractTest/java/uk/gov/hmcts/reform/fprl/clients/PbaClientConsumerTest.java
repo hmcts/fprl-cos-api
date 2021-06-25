@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.client;
+package uk.gov.hmcts.reform.fprl.clients;
 
 import au.com.dius.pact.consumer.dsl.DslPart;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
@@ -20,10 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import uk.gov.hmcts.reform.divorce.orchestration.client.PbaValidationClient;
-import uk.gov.hmcts.reform.divorce.orchestration.domain.model.pay.validation.PBAOrganisationResponse;
-
-import java.io.IOException;
+import uk.gov.hmcts.reform.fprl.models.payment.PbaOrganisationResponse;
 
 import static io.pactfoundation.consumer.dsl.LambdaDsl.newJsonBody;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -41,14 +38,14 @@ public class PbaClientConsumerTest {
 
     public static final String SOME_AUTHORIZATION_TOKEN = "Bearer UserAuthToken";
     public static final String SOME_SERVICE_AUTHORIZATION_TOKEN = "ServiceToken";
+    public static final String ORGANISATION_EMAIL = "someemailaddress@organisation.com";
+    public static final String SERVICE_AUTHORIZATION = "ServiceAuthorization";
 
     @Autowired
     private PbaValidationClient pbaValidationClient;
+
     @Autowired
     ObjectMapper objectMapper;
-
-    public static final String ORGANISATION_EMAIL = "someemailaddress@organisation.com";
-    public static final String SERVICE_AUTHORIZATION = "ServiceAuthorization";
 
     @BeforeEach
     public void setUpEachTest() throws InterruptedException {
@@ -60,7 +57,7 @@ public class PbaClientConsumerTest {
         Executor.closeIdleConnections();
     }
 
-    @Pact(provider = "referenceData_organisationalExternalPbas", consumer = "divorce_caseOrchestratorService")
+    @Pact(provider = "referenceData_organisationalExternalPbas", consumer = "fprl_cos")
     RequestResponsePact getOrganisationalPbasReferenceData(PactDslWithProvider builder) {
         // @formatter:off
         return builder
@@ -69,9 +66,12 @@ public class PbaClientConsumerTest {
             .path("/refdata/external/v1/organisations/pbas")
             .query("email=" + ORGANISATION_EMAIL)
             .method("GET")
-            .headers(HttpHeaders.AUTHORIZATION, SOME_AUTHORIZATION_TOKEN, SERVICE_AUTHORIZATION,
-                SOME_SERVICE_AUTHORIZATION_TOKEN)
-            .willRespondWith()
+            .headers(
+                HttpHeaders.AUTHORIZATION,
+                SOME_AUTHORIZATION_TOKEN,
+                SERVICE_AUTHORIZATION,
+                SOME_SERVICE_AUTHORIZATION_TOKEN
+            ).willRespondWith()
             .status(200)
             .body(buildOrganisationalResponsePactDsl())
             .toPact();
@@ -80,10 +80,13 @@ public class PbaClientConsumerTest {
     private DslPart buildOrganisationalResponsePactDsl() {
         return newJsonBody((o) -> {
             o.object("organisationEntityResponse", ob -> ob
-                .stringType("organisationIdentifier",
-                    ORGANISATION_EMAIL)
+                .stringType(
+                    "organisationIdentifier",
+                    ORGANISATION_EMAIL
+                )
                 .stringMatcher("status",
-                    "PENDING|ACTIVE|BLOCKED|DELETED", "ACTIVE")
+                               "PENDING|ACTIVE|BLOCKED|DELETED", "ACTIVE"
+                )
                 .stringType("sraId", "sraId")
                 .booleanType("sraRegulated", true)
                 .stringType("companyNumber", "123456")
@@ -100,11 +103,18 @@ public class PbaClientConsumerTest {
 
     @Test
     @PactTestFor(pactMethod = "getOrganisationalPbasReferenceData")
-    public void verifyGetOrganisationalPbasReferenceDataPact() throws IOException, JSONException {
+    public void verifyGetOrganisationalPbasReferenceDataPact() throws JSONException {
 
-        ResponseEntity<PBAOrganisationResponse> response = pbaValidationClient.retrievePbaNumbers(SOME_AUTHORIZATION_TOKEN,
-            SOME_SERVICE_AUTHORIZATION_TOKEN, ORGANISATION_EMAIL);
-        assertThat(response.getBody().getOrganisationEntityResponse().getOrganisationIdentifier(), equalTo(ORGANISATION_EMAIL));
+        ResponseEntity<PbaOrganisationResponse> response = pbaValidationClient
+            .retrievePbaNumbers(
+                SOME_AUTHORIZATION_TOKEN,
+                SOME_SERVICE_AUTHORIZATION_TOKEN,
+                ORGANISATION_EMAIL
+            );
 
+        assertThat(
+            response.getBody().getOrganisationEntityResponse().getOrganisationIdentifier(),
+            equalTo(ORGANISATION_EMAIL)
+        );
     }
 }

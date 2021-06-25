@@ -159,16 +159,17 @@ group = 'uk.gov.hmcts.reform.fprl'
 version = '0.0.1'
 sourceCompatibility = 11
 
+mainClassName = 'uk.gov.hmcts.reform.demo.Application'
+
 bootJar {
+  getArchiveFileName().set(provider {
+    'fprl-cos-api.jar'
+  })
+
   manifest {
-    attributes 'Implementation-Title': project.name,
-      'Implementation-Version': project.version
+    attributes('Implementation-Version': project.version.toString())
   }
-
-  archiveFileName = 'fprl-cos-api.jar'
 }
-
-mainClassName = 'uk.gov.hmcts.reform.fprl.Application'
 
 compileJava {
   options.compilerArgs << '-parameters' << '-Xlint:deprecation'

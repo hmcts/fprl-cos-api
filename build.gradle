@@ -43,7 +43,7 @@ def versions = [
   jackson                      : '2.11.1',
   jacksonDatatypeJsr           : '2.10.0',
   jsonAssert                   : '1.2.3',
-  jsonPathAssert               : '2.2.0',
+  //  jsonPathAssert               : '2.2.0',
   junit                        : '4.13.1',
   lombok                       : '1.18.18',
   puppyCrawl                   : '8.29',
@@ -232,8 +232,8 @@ dependencies {
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
   testAnnotationProcessor("org.projectlombok:lombok:${versions.lombok}")
 
+  implementation group: 'junit', name: 'junit', version: versions.junit
   implementation group: 'com.sun.xml.bind', name: 'jaxb-osgi', version: '2.3.3'
-  implementation group: 'com.jayway.jsonpath', name: 'json-path-assert', version: versions.jsonPathAssert
   implementation group: 'com.github.kirviq', name: 'dumbster', version: versions.dumbster
   implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version: versions.puppyCrawl
   implementation group: 'commons-io', name: 'commons-io', version: versions.commonsIo
@@ -298,7 +298,7 @@ dependencies {
     exclude(module: 'android-json')
   }
 
-  //integration test
+  // integration test
   integrationTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
   integrationTestImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatatypeJsr
   integrationTestImplementation group: 'com.mashape.unirest', name: 'unirest-java', version: versions.unirest
@@ -351,10 +351,7 @@ dependencies {
 
   contractTestCompile sourceSets.main.runtimeClasspath
   contractTestCompile sourceSets.test.runtimeClasspath
-}
 
-dependencies {
-  implementation 'junit:junit:4.12'
   integrationTestImplementation(sourceSets.test.output)
 }
 

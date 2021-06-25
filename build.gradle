@@ -1,6 +1,6 @@
 buildscript {
   ext {
-    springBootVersion = '2.5.1'
+    springBootVersion = '2.3.4.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -45,18 +45,18 @@ def versions = [
   jsonAssert                   : '1.2.3',
   //  jsonPathAssert               : '2.2.0',
   junit                        : '4.13.1',
-  lombok                       : '1.18.18',
+  lombok                       : '1.18.20',
   puppyCrawl                   : '8.29',
   reformPropertiesVolume       : '0.0.4',
   reformsJavaLogging           : '5.1.7',
   sendLetterClient             : '2.2.0',
-  serenity                     : '2.2.13',
+  serenity                     : '2.3.10',
   serenityCucumber             : '1.9.50',
   serviceTokenGenerator        : '3.1.1',
   springfoxSwagger             : '2.9.2',
   springSecurityCrypto         : '5.4.5',
   springSecurityRsa            : '1.0.9.RELEASE',
-  springBoot                   : '2.5.1',
+  springBoot                   : '2.3.4.RELEASE',
   tomcat                       : '9.0.43',
   unirest                      : '1.4.9',
   pact                         : '4.1.11',
@@ -65,7 +65,7 @@ def versions = [
 
 allprojects {
 
-  def springBootVersion = '2.3.4.RELEASE'
+  def springBootVersion = versions.springBoot
 
   apply plugin: 'checkstyle'
   apply plugin: 'com.github.ben-manes.versions'

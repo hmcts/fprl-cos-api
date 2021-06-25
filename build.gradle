@@ -1,5 +1,3 @@
-import org.springframework.boot.gradle.tasks.run.BootRun
-
 buildscript {
   ext {
     springBootVersion = '2.5.1'
@@ -363,15 +361,6 @@ dependencies {
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   useJUnit {
     includeCategories 'uk.gov.hmcts.reform.fprl.category.SmokeTest'
-  }
-}
-
-task bootRunAat(type: BootRun, description: 'Runs the app using AAT config', dependsOn: 'classes', group: 'Application') {
-  main = bootJar.mainClassName
-  doFirst() {
-    classpath = sourceSets.main.runtimeClasspath
-    systemProperties = System.properties
-    systemProperty 'spring.profiles.active', 'aat'
   }
 }
 

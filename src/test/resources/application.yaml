@@ -55,4 +55,4 @@ pba:
   validation:
     service:
       api:
-        baseurl: ${PRD_API_BASEURL:http://localhost:8090}
+        baseurl: ${PRD_API_BASEURL:http://localhost:8892}

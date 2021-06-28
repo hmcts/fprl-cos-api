@@ -57,7 +57,7 @@ def versions = [
   springSecurityCrypto         : '5.4.5',
   springSecurityRsa            : '1.0.9.RELEASE',
   springBoot                   : '2.3.4.RELEASE',
-  tomcat                       : '10.0.7',
+  tomcat                       : '9.0.43',
   unirest                      : '1.4.9'
 ]
 
@@ -85,7 +85,7 @@ allprojects {
     // Specifies if the build should be failed if a CVSS score above a specified level is identified.
     // range of 0-10 fails the build, anything greater and it doesn't fail the build
     failBuildOnCVSS = System.getProperty('dependencyCheck.failBuild') == 'false' ? 11 : 0
-    suppressionFile = 'dependency-check-suppressions.xml'
+    suppressionFile = 'config/checkstyle/checkstyle.xml'
     analyzers {
       // Disable scanning of .NET related binaries
       assemblyEnabled = false
@@ -155,7 +155,7 @@ group = 'uk.gov.hmcts.reform.fprl'
 version = '0.0.1'
 sourceCompatibility = 11
 
-mainClassName = 'uk.gov.hmcts.reform.demo.Application'
+mainClassName = 'uk.gov.hmcts.reform.fprl.Application'
 
 bootJar {
   getArchiveFileName().set(provider {
@@ -267,7 +267,9 @@ dependencies {
     }
 
   implementation(group: 'commons-beanutils', name: 'commons-beanutils', version: versions.commonsBeanUtils)
+  implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson)
   implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson)
+  implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson)
 
   implementation(group: 'com.google.guava', name: 'guava', version: versions.guava)
 
@@ -294,6 +296,8 @@ dependencies {
   testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test') {
     exclude(module: 'commons-logging')
     exclude(module: 'android-json')
+    exclude module: 'junit'
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
 
   // integration test
@@ -335,9 +339,18 @@ dependencies {
   contractTestRuntime group: 'au.com.dius.pact.consumer', name: 'java8', version: versions.pact
 
   contractTestCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
-  contractTestCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+
+  compile 'org.junit.vintage:junit-vintage-engine:5.7.2'
+  testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
+
+//  contractTestCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
+//    {
+//      exclude group: 'junit'
+//      exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//    }
   contractTestCompile("org.junit.jupiter:junit-jupiter-api:5.7.2")
   contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.7.2")
+  testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
   contractTestImplementation('org.junit.jupiter:junit-jupiter-api:5.7.2')
 
   contractTestCompile sourceSets.main.runtimeClasspath

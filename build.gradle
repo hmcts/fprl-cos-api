@@ -296,6 +296,8 @@ dependencies {
   testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test') {
     exclude(module: 'commons-logging')
     exclude(module: 'android-json')
+    exclude module: 'junit'
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
 
   // integration test
@@ -359,7 +361,7 @@ dependencies {
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   useJUnit {
-    includeCategories 'uk.gov.hmcts.reform.fprl.category.SmokeTest'
+    includeCategories 'uk.gov.hmcts.reform.fprl.category.*'
   }
 }
 

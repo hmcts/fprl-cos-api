@@ -155,7 +155,7 @@ group = 'uk.gov.hmcts.reform.fprl'
 version = '0.0.1'
 sourceCompatibility = 11
 
-mainClassName = 'uk.gov.hmcts.reform.demo.Application'
+mainClassName = 'uk.gov.hmcts.reform.fprl.Application'
 
 bootJar {
   getArchiveFileName().set(provider {

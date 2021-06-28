@@ -361,7 +361,7 @@ dependencies {
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   useJUnit {
-    includeCategories 'uk.gov.hmcts.reform.fprl.category.*'
+    includeCategories 'uk.gov.hmcts.reform.fprl.category.SmokeTest'
   }
 }
 

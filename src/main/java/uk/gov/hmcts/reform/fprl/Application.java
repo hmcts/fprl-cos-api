@@ -3,7 +3,11 @@ package uk.gov.hmcts.reform.fprl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(
+    scanBasePackages = {
+        "uk.gov.hmcts.reform.fprl"
+    }
+)
 public class Application {
 
     public static void main(final String[] args) {

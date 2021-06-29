@@ -257,6 +257,7 @@ dependencies {
   implementation group: 'uk.gov.hmcts.reform', name: 'send-letter-client', version: versions.sendLetterClient
   implementation group: 'uk.gov.service.notify', name: 'notifications-java-client', version: versions.hmctsNotify
   implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
+  implementation group: 'org.springframework.boot', name: 'spring-boot-starter-quartz'
 
   implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
     {
@@ -343,11 +344,6 @@ dependencies {
   compile 'org.junit.vintage:junit-vintage-engine:5.7.2'
   testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
 
-//  contractTestCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
-//    {
-//      exclude group: 'junit'
-//      exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-//    }
   contractTestCompile("org.junit.jupiter:junit-jupiter-api:5.7.2")
   contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.7.2")
   testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.2"
@@ -422,7 +418,8 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 def sonarExclusions = [
   '**uk/gov/hmcts/reform/fprl/models/**/*',
-  '**uk/gov/hmcts/reform/fprl/**/config/**/*'
+  '**uk/gov/hmcts/reform/fprl/config/**/*',
+  '**uk/gov/hmcts/reform/fprl/services/**/*'
 ]
 
 sonarqube {

@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(RootController.class)
 @AutoConfigureMockMvc
 @ContextConfiguration(classes = Application.class)
-@PropertySource(value = "classpath:application.yml")
+@PropertySource(value = "classpath:application.yaml")
 public class RootControllerTest {
 
     @Autowired

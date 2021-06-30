@@ -45,7 +45,7 @@ public class PbaClientConsumerTest {
     private PbaValidationClient pbaValidationClient;
 
     @Autowired
-    ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @BeforeEach
     public void setUpEachTest() throws InterruptedException {

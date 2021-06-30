@@ -11,6 +11,6 @@ public class ExampleServiceTest {
 
     @Test
     public void testToGetCoverage() {
-        assertEquals(new ExampleService().getMessage(), "Hello World");
+        assertEquals(ExampleService.HELLO_WORLD, new ExampleService().getMessage());
     }
 }

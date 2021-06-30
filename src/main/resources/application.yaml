@@ -56,3 +56,15 @@ pba:
     service:
       api:
         baseurl: ${PRD_API_BASEURL:http://localhost:8892}
+
+uk:
+  gov:
+    notify:
+      api:
+        key: ${UK_GOV_NOTIFY_API_KEY:fprlcosapi-be03d538-db4c-4efe-8d36-b2a8c9d5131b-dff08d9e-a874-4bb5-9c21-32fbc4922fb1}
+        baseUrl: https://api.notifications.service.gov.uk
+    templates:
+      english:
+        EXAMPLE: 111
+      welsh:
+        EXAMPLE: 222

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models.email;
+package uk.gov.hmcts.reform.fprl.models.dto.payment;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,14 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CitizenEmail {
+public class PbaOrganisationResponse {
 
-    @JsonProperty("caseReference")
-    private String caseReference;
-
-    @JsonProperty("petitionerName")
-    private String petitionerName;
-
-    @JsonProperty("respondentName")
-    private String respondentName;
+    @JsonProperty
+    private OrganisationEntityResponse organisationEntityResponse;
 }

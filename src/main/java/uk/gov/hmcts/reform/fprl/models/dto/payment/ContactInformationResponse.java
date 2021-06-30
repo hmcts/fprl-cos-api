@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models.payment;
+package uk.gov.hmcts.reform.fprl.models.dto.payment;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

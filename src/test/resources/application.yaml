@@ -56,3 +56,10 @@ pba:
     service:
       api:
         baseurl: ${PRD_API_BASEURL:http://localhost:8892}
+
+uk:
+  gov:
+    notify:
+      api:
+        key: ${UK_GOV_NOTIFY_API_KEY:dummy}
+        baseUrl: https://api.notifications.service.gov.uk

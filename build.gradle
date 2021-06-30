@@ -225,6 +225,8 @@ dependencyCheck {
 }
 
 dependencies {
+
+  annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
   compileOnly("org.projectlombok:lombok:${versions.lombok}")
   testCompileOnly("org.projectlombok:lombok:${versions.lombok}")
   annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
@@ -258,6 +260,8 @@ dependencies {
   implementation group: 'uk.gov.service.notify', name: 'notifications-java-client', version: versions.hmctsNotify
   implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: versions.httpComponents
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-quartz'
+  implementation group: 'uk.gov.service.notify', name: 'notifications-java-client', version: versions.hmctsNotify
+  implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
 
   implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
     {

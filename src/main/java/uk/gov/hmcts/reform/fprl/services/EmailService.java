@@ -48,6 +48,7 @@ public class EmailService {
         );
     }
 
+    @SuppressWarnings("unchecked")
     private Map<String, String> toMap(EmailTemplateVars templateVars) {
         return objectMapper.convertValue(templateVars, Map.class);
     }

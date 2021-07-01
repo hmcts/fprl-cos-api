@@ -16,7 +16,7 @@ public class EmailObfuscator {
 
         String[] parts = email.split("@");
 
-        if (parts.length != 2 || parts[0].length() < 1) {
+        if (parts.length!=2 || parts[0].length() < 1) {
             throw new IllegalArgumentException("Invalid email.");
         }
 
@@ -24,16 +24,26 @@ public class EmailObfuscator {
     }
 
     private static String replaceAddressWithAsterisks(String[] parts) {
-        String address = parts[0];
+        String address = parts[0].trim();
+        String domain = parts[1].trim();
 
         if (address.length() < 3) {
-            return concatenateParts(address, 1, parts[1]);
+            return address.charAt(0)
+                + StringUtils.repeat("*", address.length() - 1)
+                + "@" + domain;
         }
 
-        return concatenateParts(address, 2, parts[1]);
+        return concatenateParts(address, parts[1]);
     }
 
-    private static String concatenateParts(String address, int i, String part) {
-        return address.charAt(0) + StringUtils.repeat("*", address.length() - i) + "@" + part;
+    private static String concatenateParts(String address, String domain) {
+        final int numberOfAsterisks = address.length() - 3;
+        final int lastCharacterIndex = address.length() - 1;
+        final int firstCharacterIndex = 0;
+
+        return address.charAt(firstCharacterIndex)
+            + StringUtils.repeat("*", numberOfAsterisks)
+            + address.charAt(lastCharacterIndex)
+            + "@" + domain;
     }
 }

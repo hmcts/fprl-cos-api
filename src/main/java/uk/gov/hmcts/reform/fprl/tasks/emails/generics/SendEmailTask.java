@@ -5,34 +5,33 @@ import lombok.extern.slf4j.Slf4j;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
 import uk.gov.hmcts.reform.fprl.framework.task.Task;
 import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
 import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.services.EmailService;
 
-import java.util.Map;
-
 @Slf4j
 @RequiredArgsConstructor
-public abstract class SendEmailTask implements Task<Map<String, Object>> {
+public abstract class SendEmailTask implements Task<CaseDetails> {
 
     private final EmailService emailService;
 
-    protected abstract EmailTemplateVars getPersonalisation(TaskContext context, Map<String, Object> caseData);
+    protected abstract EmailTemplateVars getPersonalisation(TaskContext context, CaseDetails caseDetails);
 
     protected abstract EmailTemplateNames getTemplate();
 
-    protected abstract String getRecipientEmail(Map<String, Object> caseData);
+    protected abstract String getRecipientEmail(CaseDetails caseDetails);
 
-    protected LanguagePreference getLanguage(Map<String, Object> caseData) {
-        return LanguagePreference.ENGLISH; // fix
+    protected LanguagePreference getLanguage(CaseDetails caseDetails) {
+        return LanguagePreference.getLanguagePreference(caseDetails.getCaseData());
     }
 
-    protected boolean canEmailBeSent(Map<String, Object> caseData) {
+    protected boolean canEmailBeSent(CaseDetails caseDetails) {
         return true;
     }
 
     @Override
-    public Map<String, Object> execute(TaskContext context, Map<String, Object> caseData) {
+    public CaseDetails execute(TaskContext context, CaseDetails caseData) {
         final String caseId = "1"; // getCaseId(context); fix it
         final String templateName = getTemplate().name();
 

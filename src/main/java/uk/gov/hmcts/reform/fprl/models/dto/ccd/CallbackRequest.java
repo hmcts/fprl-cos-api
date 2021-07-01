@@ -12,8 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder
-public class CcdCallbackRequest {
-    private String token;
+public class CallbackRequest {
+
+    @JsonProperty("case_details")
+    private CaseDetails caseDetails;
+
     @JsonProperty("event_id")
     private String eventId;
 }

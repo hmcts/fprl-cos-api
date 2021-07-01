@@ -1,16 +1,23 @@
 package uk.gov.hmcts.reform.fprl.models;
 
+import lombok.RequiredArgsConstructor;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
+
+import java.util.Optional;
+
+@RequiredArgsConstructor
 public enum LanguagePreference {
+
     ENGLISH("english"),
     WELSH("welsh");
 
     private final String code;
 
-    LanguagePreference(String code) {
-        this.code = code;
-    }
+    public static LanguagePreference getLanguagePreference(CaseData caseData) {
+        boolean preferredLanguageIsWelsh = Optional.ofNullable(caseData.getLanguagePreferenceWelsh())
+            .map(YesOrNo.YES::equals)
+            .orElse(false);
 
-    public String getCode() {
-        return code;
+        return preferredLanguageIsWelsh ? LanguagePreference.WELSH:LanguagePreference.ENGLISH;
     }
 }

@@ -1,11 +1,10 @@
 package uk.gov.hmcts.reform.fprl.tasks.emails.generics;
 
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
 import uk.gov.hmcts.reform.fprl.services.EmailService;
-
-import java.util.Map;
 
 public abstract class SendCitizenEmailTask extends SendEmailTask {
 
@@ -14,13 +13,13 @@ public abstract class SendCitizenEmailTask extends SendEmailTask {
     }
 
     @Override
-    protected EmailTemplateVars getPersonalisation(TaskContext context, Map<String, Object> caseData) {
+    protected EmailTemplateVars getPersonalisation(TaskContext context, CaseDetails caseDetails) {
         return CitizenEmail.CitizenEmailBuilder().build();
     }
 
     @Override
-    protected String getRecipientEmail(Map<String, Object> caseData) {
-        return (String) caseData.get("email");
+    protected String getRecipientEmail(CaseDetails caseDetails) {
+        return "fake@mailinator.com";
     }
 }
 

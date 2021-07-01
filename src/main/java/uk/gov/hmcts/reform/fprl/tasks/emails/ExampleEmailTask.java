@@ -1,11 +1,10 @@
 package uk.gov.hmcts.reform.fprl.tasks.emails;
 
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.services.EmailService;
 import uk.gov.hmcts.reform.fprl.tasks.emails.generics.SendCitizenEmailTask;
-
-import java.util.Map;
 
 @Component
 public class ExampleEmailTask extends SendCitizenEmailTask {
@@ -15,7 +14,7 @@ public class ExampleEmailTask extends SendCitizenEmailTask {
     }
 
     @Override
-    protected String getRecipientEmail(Map<String, Object> caseData) {
+    protected String getRecipientEmail(CaseDetails caseDetails) {
         return "example@mailinator.com";
     }
 

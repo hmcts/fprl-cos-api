@@ -3,9 +3,9 @@ package uk.gov.hmcts.reform.fprl.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.workflows.ExampleWorkflow;
-
-import java.util.Map;
 
 /**
  * This class is added only as a java service example. It can be deleted when more services is added.
@@ -22,7 +22,7 @@ public class ExampleService {
         return HELLO_WORLD;
     }
 
-    public Map<String, Object> executeExampleWorkflow() throws WorkflowException {
-        return exampleWorkflow.run();
+    public CaseData executeExampleWorkflow(CaseDetails caseDetails) throws WorkflowException {
+        return exampleWorkflow.run(caseDetails).getCaseData();
     }
 }

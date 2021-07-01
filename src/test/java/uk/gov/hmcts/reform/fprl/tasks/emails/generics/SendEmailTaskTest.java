@@ -113,7 +113,7 @@ public class SendEmailTaskTest {
 
         verify(emailService).send(
             TEST_EMAIL,
-            EmailTemplateNames.EXAMPLE,
+            EMAIL_TEMPLATE_ID,
             EmailTemplateVarsProvider.empty(),
             LanguagePreference.ENGLISH
         );

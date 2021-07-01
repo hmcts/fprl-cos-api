@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
+import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,5 +16,5 @@ import java.util.Map;
 @Getter
 public class EmailTemplatesConfig {
 
-    private final Map<LanguagePreference, Map<String, String>> templates = new HashMap<>();
+    private final Map<LanguagePreference, Map<EmailTemplateNames, String>> templates = new HashMap<>();
 }

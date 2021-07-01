@@ -2,9 +2,11 @@ package uk.gov.hmcts.reform.fprl.models.dto.notify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class CitizenEmail extends EmailTemplateVars {
 
     @JsonProperty("petitionerName")

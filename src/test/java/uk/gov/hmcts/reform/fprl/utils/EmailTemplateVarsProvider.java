@@ -9,4 +9,8 @@ public class EmailTemplateVarsProvider {
     public static EmailTemplateVars empty() {
         return EmailTemplateVars.builder().build();
     }
+
+    public static EmailTemplateVars of(String caseId) {
+        return EmailTemplateVars.builder().caseReference(caseId).build();
+    }
 }

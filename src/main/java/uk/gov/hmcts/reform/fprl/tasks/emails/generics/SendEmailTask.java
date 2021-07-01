@@ -26,23 +26,26 @@ public abstract class SendEmailTask implements Task<CaseDetails> {
         return LanguagePreference.getLanguagePreference(caseDetails.getCaseData());
     }
 
+    /**
+     * By default - always send email. This can be used for scenarios e.g. when email is not mandatory.
+     */
     protected boolean canEmailBeSent(CaseDetails caseDetails) {
         return true;
     }
 
     @Override
-    public CaseDetails execute(TaskContext context, CaseDetails caseData) {
-        final String caseId = "1"; // getCaseId(context); fix it
+    public CaseDetails execute(TaskContext context, CaseDetails caseDetails) {
+        final String caseId = caseDetails.getCaseId();
         final String templateName = getTemplate().name();
 
-        if (canEmailBeSent(caseData)) {
+        if (canEmailBeSent(caseDetails)) {
             log.info("CaseID: {} email {} is going to be sent.", caseId, templateName);
 
             emailService.send(
-                getRecipientEmail(caseData),
+                getRecipientEmail(caseDetails),
                 getTemplate(),
-                getPersonalisation(context, caseData),
-                getLanguage(caseData)
+                getPersonalisation(context, caseDetails),
+                getLanguage(caseDetails)
             );
 
             log.info("CaseID: {} email {} was sent.", caseId, templateName);
@@ -50,7 +53,7 @@ public abstract class SendEmailTask implements Task<CaseDetails> {
             log.warn("CaseID: {} email {} will not be sent.", caseId, templateName);
         }
 
-        return caseData;
+        return caseDetails;
     }
 }
 

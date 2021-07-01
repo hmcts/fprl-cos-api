@@ -18,6 +18,6 @@ public enum LanguagePreference {
             .map(YesOrNo.YES::equals)
             .orElse(false);
 
-        return preferredLanguageIsWelsh ? LanguagePreference.WELSH:LanguagePreference.ENGLISH;
+        return preferredLanguageIsWelsh ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 }

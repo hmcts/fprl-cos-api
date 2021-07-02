@@ -11,16 +11,18 @@ import uk.gov.hmcts.reform.fprl.utils.CaseDataProvider;
 import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
 import uk.gov.hmcts.reform.fprl.workflows.ExampleWorkflow;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleServiceTest {
 
     @Mock
-    ExampleWorkflow exampleWorkflow;
+    private ExampleWorkflow exampleWorkflow;
 
     @InjectMocks
-    ExampleService exampleService;
+    private ExampleService exampleService;
 
     @Test
     public void testToGetCoverage() throws WorkflowException {
@@ -28,5 +30,8 @@ public class ExampleServiceTest {
         when(exampleWorkflow.run(caseDetails)).thenReturn(caseDetails);
 
         exampleService.executeExampleWorkflow(caseDetails);
+
+        verify(exampleWorkflow).run(caseDetails);
+        verifyNoMoreInteractions(exampleWorkflow);
     }
 }

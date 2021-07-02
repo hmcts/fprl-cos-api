@@ -11,6 +11,8 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
 import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -28,5 +30,8 @@ public class CallbackControllerTest {
         when(exampleService.executeExampleWorkflow(caseDetails)).thenReturn(caseDetails.getCaseData());
 
         callbackController.sendEmail(CallbackRequest.builder().caseDetails(caseDetails).build());
+
+        verify(exampleService.executeExampleWorkflow(caseDetails));
+        verifyNoMoreInteractions(exampleService);
     }
 }

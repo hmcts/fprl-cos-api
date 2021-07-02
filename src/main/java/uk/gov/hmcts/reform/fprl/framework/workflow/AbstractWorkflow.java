@@ -13,7 +13,7 @@ public abstract class AbstractWorkflow<T> implements Workflow<T> {
     private final ThreadLocal<DefaultTaskContext> threadLocalContext = new ThreadLocal<>();
 
     @Override
-    public T execute(Task[] tasks, DefaultTaskContext context, T payload, Pair... pairs) throws WorkflowException {
+    public T execute(Task<T>[] tasks, DefaultTaskContext context, T payload, Pair... pairs) throws WorkflowException {
         threadLocalContext.set(context);
 
         for (Pair pair : pairs) {
@@ -24,7 +24,7 @@ public abstract class AbstractWorkflow<T> implements Workflow<T> {
     }
 
     @Override
-    public T execute(Task[] tasks, T payload, Pair... pairs) throws WorkflowException {
+    public T execute(Task<T>[] tasks, T payload, Pair... pairs) throws WorkflowException {
         return execute(tasks, new DefaultTaskContext(), payload, pairs);
     }
 

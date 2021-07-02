@@ -4,7 +4,7 @@ import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
 import uk.gov.hmcts.reform.fprl.framework.task.Task;
 
-public abstract class DefaultWorkflow<T> extends AbstractWorkflow<T> {
+public class DefaultWorkflow<T> extends AbstractWorkflow<T> {
 
     @SuppressWarnings("unchecked")
     @Override

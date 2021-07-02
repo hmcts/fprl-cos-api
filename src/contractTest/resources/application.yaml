@@ -63,3 +63,8 @@ uk:
       api:
         key: ${UK_GOV_NOTIFY_API_KEY:dummy}
         baseUrl: https://api.notifications.service.gov.uk
+    templates:
+      english:
+        EXAMPLE: 111
+      welsh:
+        EXAMPLE: 222

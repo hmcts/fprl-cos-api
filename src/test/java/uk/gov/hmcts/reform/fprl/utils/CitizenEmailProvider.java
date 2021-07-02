@@ -14,12 +14,12 @@ public class CitizenEmailProvider {
         return builder().build();
     }
 
-    public static CitizenEmail of(String caseId) {
-        return builder().caseReference(caseId).build();
-    }
-
     public static CitizenEmail full() {
         return of(TEST_CASE_ID, TEST_PETITIONER_NAME, TEST_RESPONDENT_NAME);
+    }
+
+    public static CitizenEmail of(String caseId) {
+        return builder().caseReference(caseId).build();
     }
 
     public static CitizenEmail of(String caseId, String petitionerName, String respondentName) {

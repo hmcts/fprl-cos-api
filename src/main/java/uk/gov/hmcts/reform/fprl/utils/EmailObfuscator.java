@@ -16,7 +16,7 @@ public class EmailObfuscator {
 
         String[] parts = email.split("@");
 
-        if (parts.length!=2 || parts[0].length() < 1) {
+        if (parts.length != 2 || parts[0].length() < 1) {
             throw new IllegalArgumentException("Invalid email.");
         }
 

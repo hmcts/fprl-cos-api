@@ -29,6 +29,7 @@ public abstract class SendEmailTask implements Task<CaseDetails> {
     /**
      * By default - always send email. This can be used for scenarios e.g. when email is not mandatory.
      */
+    @SuppressWarnings("unchecked")
     protected boolean canEmailBeSent(CaseDetails caseDetails) {
         return true;
     }

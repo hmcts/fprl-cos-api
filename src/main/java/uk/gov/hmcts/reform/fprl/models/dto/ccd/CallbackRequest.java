@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models.payment;
+package uk.gov.hmcts.reform.fprl.models.dto.ccd;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,16 +8,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DxAddressResponse {
+@Builder
+public class CallbackRequest {
 
-    @JsonProperty
-    private String dxNumber;
-    @JsonProperty
-    private String dxExchange;
+    @JsonProperty("case_details")
+    private CaseDetails caseDetails;
 
+    @JsonProperty("event_id")
+    private String eventId;
 }
-

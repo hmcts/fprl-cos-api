@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import uk.gov.hmcts.reform.fprl.config.consts.CustomHttpHeaders;
-import uk.gov.hmcts.reform.fprl.models.payment.PbaOrganisationResponse;
+import uk.gov.hmcts.reform.fprl.models.dto.payment.PbaOrganisationResponse;
 
 @FeignClient(name = "pba-validation-client", url = "${pba.validation.service.api.baseurl}")
 public interface PbaValidationClient {

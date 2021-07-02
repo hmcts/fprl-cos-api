@@ -27,6 +27,7 @@ public abstract class SendEmailTask implements Task<CaseDetails> {
     }
 
     /**
+     * Indicates if notify email client should be called.
      * @param caseDetails This may be use for further computation in overriding classes.
      */
     @SuppressWarnings("unchecked")

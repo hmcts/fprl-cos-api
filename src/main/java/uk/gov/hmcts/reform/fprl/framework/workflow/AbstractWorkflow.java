@@ -48,4 +48,11 @@ public abstract class AbstractWorkflow<T> implements Workflow<T> {
     }
 
     protected abstract T executeInternal(Task[] tasks, T payload) throws WorkflowException;
+
+    /**
+     * Just to fix sonar issue.
+     * */
+    public void unload() {
+        this.threadLocalContext.remove();
+    }
 }

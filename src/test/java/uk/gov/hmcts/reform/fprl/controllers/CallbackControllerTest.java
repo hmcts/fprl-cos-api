@@ -31,7 +31,7 @@ public class CallbackControllerTest {
 
         callbackController.sendEmail(CallbackRequest.builder().caseDetails(caseDetails).build());
 
-        verify(exampleService.executeExampleWorkflow(caseDetails));
+        verify(exampleService).executeExampleWorkflow(caseDetails);
         verifyNoMoreInteractions(exampleService);
     }
 }

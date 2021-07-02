@@ -21,6 +21,7 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_EMAIL;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -49,6 +50,11 @@ public class SendEmailTaskTest {
             @Override
             protected String getRecipientEmail(CaseDetails caseDetails) {
                 return TEST_EMAIL;
+            }
+
+            @Override
+            protected boolean canEmailBeSent(CaseDetails caseDetails) {
+                return caseDetails.getCaseData() != null;
             }
         };
     }
@@ -117,5 +123,12 @@ public class SendEmailTaskTest {
             EmailTemplateVarsProvider.empty(),
             LanguagePreference.ENGLISH
         );
+    }
+
+    @Test
+    public void executeDoesNotCallsEmailServiceWhenCaseDataIsNull() {
+        task.execute(TaskContextProvider.empty(), CaseDetailsProvider.of(null));
+
+        verifyNoInteractions(emailService);
     }
 }

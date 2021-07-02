@@ -21,6 +21,16 @@ public class EmailObfuscatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void obfuscateNullShouldThrowException() {
+        EmailObfuscator.obfuscate(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void obfuscateEmptyStringShouldThrowException() {
+        EmailObfuscator.obfuscate("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void obfuscateTooShortEmailShouldThrowException() {
         EmailObfuscator.obfuscate("@example.com");
     }

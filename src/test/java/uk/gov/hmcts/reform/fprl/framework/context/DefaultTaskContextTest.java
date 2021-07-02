@@ -44,5 +44,17 @@ public class DefaultTaskContextTest {
         defaultTaskContext.computeTransientObjectIfAbsent("foo", "baz");
 
         assertThat(defaultTaskContext.getTransientObject("foo"), is("bar"));
+        assertThat(defaultTaskContext.getTransientObjectOptional("foo").isEmpty(), is(false));
+        assertThat(defaultTaskContext.getTransientObjectOptional("foo").get(), is("bar"));
+    }
+
+    @Test
+    public void useOverloadedConstructor() {
+        defaultTaskContext.setTransientObject("foo", "bar");
+        DefaultTaskContext context = new DefaultTaskContext(defaultTaskContext);
+
+        assertThat(context.getTransientObject("foo"), is("bar"));
+        assertThat(context.getTransientObjectOptional("oof").isEmpty(), is(true));
+        assertThat(context.getTransientObjectOptional("foo").isEmpty(), is(false));
     }
 }

@@ -7,10 +7,10 @@ import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
 import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.services.EmailService;
-import uk.gov.hmcts.reform.fprl.tasks.emails.generics.SendCitizenEmailTask;
+import uk.gov.hmcts.reform.fprl.tasks.emails.generics.SendEmailTask;
 
 @Component
-public class ExampleEmailTask extends SendCitizenEmailTask {
+public class ExampleEmailTask extends SendEmailTask {
 
     protected ExampleEmailTask(EmailService emailService) {
         super(emailService);

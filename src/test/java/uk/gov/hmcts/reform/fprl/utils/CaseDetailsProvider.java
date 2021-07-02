@@ -11,6 +11,10 @@ public class CaseDetailsProvider {
         return CaseDetails.builder().caseData(CaseDataProvider.empty()).build();
     }
 
+    public static CaseDetails full() {
+        return CaseDetails.builder().caseData(CaseDataProvider.full()).build();
+    }
+
     public static CaseDetails of(CaseData caseData) {
         return CaseDetails.builder().caseData(caseData).build();
     }

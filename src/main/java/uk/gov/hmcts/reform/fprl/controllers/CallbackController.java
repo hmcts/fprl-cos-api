@@ -31,7 +31,7 @@ public class CallbackController {
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Callback processed.", response = CallbackResponse.class),
         @ApiResponse(code = 400, message = "Bad Request")})
-    public ResponseEntity<CallbackResponse> email(
+    public ResponseEntity<CallbackResponse> sendEmail(
         @RequestBody @ApiParam("CaseData") CallbackRequest request
     ) throws WorkflowException {
         return ok(

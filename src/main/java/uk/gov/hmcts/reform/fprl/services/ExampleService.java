@@ -14,13 +14,7 @@ import uk.gov.hmcts.reform.fprl.workflows.ExampleWorkflow;
 @RequiredArgsConstructor
 public class ExampleService {
 
-    public static final String HELLO_WORLD = "Hello World";
-
     private final ExampleWorkflow exampleWorkflow;
-
-    public String getMessage() {
-        return HELLO_WORLD;
-    }
 
     public CaseData executeExampleWorkflow(CaseDetails caseDetails) throws WorkflowException {
         return exampleWorkflow.run(caseDetails).getCaseData();

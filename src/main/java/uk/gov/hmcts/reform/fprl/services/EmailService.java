@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.fprl.clients.EmailClient;
 import uk.gov.hmcts.reform.fprl.config.EmailTemplatesConfig;
 import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
 import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.utils.EmailObfuscator;
+import uk.gov.service.notify.NotificationClient;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
 
@@ -21,7 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EmailService {
 
-    private final EmailClient emailClient;
+    private final NotificationClient notificationClient;
     private final EmailTemplatesConfig emailTemplatesConfig;
     private final ObjectMapper objectMapper;
 
@@ -34,7 +34,7 @@ public class EmailService {
         final String templateId = getTemplateId(templateName, languagePreference);
 
         try {
-            SendEmailResponse response = emailClient.sendEmail(templateId, email, toMap(templateVars), reference);
+            SendEmailResponse response = notificationClient.sendEmail(templateId, email, toMap(templateVars), reference);
             onAfterLog(templateName, templateVars.getCaseReference(), reference, response.getNotificationId());
         } catch (NotificationClientException exception) {
             throw new IllegalArgumentException(exception);

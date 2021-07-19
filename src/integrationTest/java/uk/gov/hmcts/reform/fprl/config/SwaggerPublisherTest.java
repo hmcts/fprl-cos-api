@@ -1,45 +1,44 @@
 package uk.gov.hmcts.reform.fprl.config;
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
+import uk.gov.hmcts.reform.fprl.IntegrationTest;
+import uk.gov.hmcts.reform.fprl.util.CosApiClient;
 
+import java.io.BufferedOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Built-in feature which saves service's swagger specs in temporary directory.
  * Each travis run on master should automatically save and upload (if updated) documentation.
  */
-@WebMvcTest
-@ContextConfiguration(classes = SwaggerConfiguration.class)
-@AutoConfigureMockMvc
-class SwaggerPublisherTest {
+@Slf4j
+public class SwaggerPublisherTest extends IntegrationTest {
 
     @Autowired
-    private MockMvc mvc;
+    private CosApiClient cosApiClient;
 
     @DisplayName("Generate swagger documentation")
     @Test
-    @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
-    void generateDocs() throws Exception {
-        byte[] specs = mvc.perform(get("/v2/api-docs"))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsByteArray();
+    public void generateDocs() throws Exception {
+        byte[] specs = cosApiClient.apiDocs();
 
-        try (OutputStream outputStream = Files.newOutputStream(Paths.get("/tmp/swagger-specs.json"))) {
+        assertThat(specs.length, is(greaterThan(0)));
+
+        Path swaggerSpecPath = Paths.get(System.getProperty("java.io.tmpdir"), "swagger-specs.json");
+
+        log.info("Writing swagger specification to {}", swaggerSpecPath.toAbsolutePath());
+        try (OutputStream outputStream = new BufferedOutputStream(Files.newOutputStream(swaggerSpecPath))) {
             outputStream.write(specs);
         }
-
     }
 }

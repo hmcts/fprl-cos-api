@@ -365,11 +365,11 @@ task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verificatio
   }
 }
 
-task functional(type: Test) {
-  description = "Runs functional tests"
-  group = "Verification"
-  testClassesDirs = sourceSets.integrationTest.output.classesDirs
-  classpath = sourceSets.integrationTest.runtimeClasspath
+task functional(type: Test, description: 'Runs functional tests.', group: 'Verification') {
+  useJUnitPlatform()
+
+  setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
+  setClasspath(sourceSets.integrationTest.runtimeClasspath)
 }
 
 task nightlyFunctional(type: Test, description: 'Runs the Nightly Only Functional tests.', group: 'Verification') {
@@ -448,12 +448,12 @@ run {
   }
 }
 
-task contract(type: Test) {
-  group = 'Delivery pipeline'
-  description = 'Runs the consumer Pact tests'
+task contract(type: Test, description: 'Runs the consumer Pact tests.', group: 'Delivery pipeline') {
   useJUnitPlatform()
+
   testClassesDirs = sourceSets.contractTest.output.classesDirs
   classpath = sourceSets.contractTest.runtimeClasspath
+
   include "uk/gov/hmcts/reform/fprl/clients/**"
   systemProperty 'pact.rootDir', "pacts"
   environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")

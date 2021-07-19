@@ -1,10 +1,15 @@
 package uk.gov.hmcts.reform.fprl;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import uk.gov.hmcts.reform.fprl.utils.SslVerificationDisabler;
+
+import javax.annotation.PostConstruct;
 
 @EnableFeignClients(basePackages = {
     "uk.gov.hmcts.reform.fprl"
@@ -24,9 +29,24 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(
     basePackages = "uk.gov.hmcts.reform.fprl"
 )
+@Slf4j
 public class Application {
+
+    @Value("${runs-locally}")
+    private boolean runsLocally;
 
     public static void main(final String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @PostConstruct
+    public void initApp() throws Exception {
+        if (runsLocally) {
+            log.info("Application running locally, turning off SSL verification so that tests accessing" +
+                         " HTTPS resources can run on machines with ZScaler proxy");
+            SslVerificationDisabler.turnOffSSLVerification();
+        } else {
+            log.info("Application not detected to run on a local machine");
+        }
     }
 }

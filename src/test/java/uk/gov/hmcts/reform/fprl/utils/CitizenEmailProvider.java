@@ -31,6 +31,6 @@ public class CitizenEmailProvider {
     }
 
     private static CitizenEmail.CitizenEmailBuilder builder() {
-        return CitizenEmail.CitizenEmailBuilder();
+        return CitizenEmail.builder();
     }
 }

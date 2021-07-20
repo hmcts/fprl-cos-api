@@ -10,8 +10,8 @@ public class CitizenEmailTest {
 
     @Test
     public void customBuilderShouldWork() {
-        assertThat(CitizenEmail.CitizenEmailBuilder().petitionerName("a").build().getPetitionerName(), is("a"));
-        assertThat(CitizenEmail.CitizenEmailBuilder().respondentName("b").build().getRespondentName(), is("b"));
-        assertThat(CitizenEmail.CitizenEmailBuilder().caseReference("c").build().getCaseReference(), is("c"));
+        assertThat(CitizenEmail.builder().petitionerName("a").build().getPetitionerName(), is("a"));
+        assertThat(CitizenEmail.builder().respondentName("b").build().getRespondentName(), is("b"));
+        assertThat(CitizenEmail.builder().caseReference("c").build().getCaseReference(), is("c"));
     }
 }

@@ -39,7 +39,7 @@ public class SendEmailTaskTest {
         task = new SendEmailTask(emailService) {
             @Override
             protected EmailTemplateVars getPersonalisation(TaskContext context, CaseDetails caseDetails) {
-                return EmailTemplateVars.builder().build();
+                return new EmailTemplateVars();
             }
 
             @Override

@@ -15,7 +15,7 @@ public class CitizenEmail extends EmailTemplateVars {
     @JsonProperty("respondentName")
     private final String respondentName;
 
-    @Builder(builderMethodName = "CitizenEmailBuilder")
+    @Builder
     public CitizenEmail(String caseReference, String petitionerName, String respondentName) {
         super(caseReference);
         this.petitionerName = petitionerName;

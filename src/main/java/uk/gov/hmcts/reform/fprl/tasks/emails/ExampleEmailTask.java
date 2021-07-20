@@ -29,7 +29,7 @@ public class ExampleEmailTask extends SendEmailTask {
 
     @Override
     protected EmailTemplateVars getPersonalisation(TaskContext context, CaseDetails caseDetails) {
-        return CitizenEmail.CitizenEmailBuilder()
+        return CitizenEmail.builder()
             .caseReference("1234567890")
             .petitionerName("Jack Kirman")
             .respondentName("Jill Kirman")

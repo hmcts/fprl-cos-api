@@ -1,27 +1,24 @@
 package uk.gov.hmcts.reform.fprl.controllers;
 
+import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+import uk.gov.hmcts.reform.fprl.IntegrationTest;
+import uk.gov.hmcts.reform.fprl.util.CosApiClient;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-@WebMvcTest
-public class GetWelcomeTest {
+public class GetWelcomeTest extends IntegrationTest {
 
     @Autowired
-    private transient MockMvc mockMvc;
+    private CosApiClient cosApiClient;
 
     @DisplayName("Should welcome upon root request with 200 response code")
     @Test
-    public void welcomeRootEndpoint() throws Exception {
-        MvcResult response = mockMvc.perform(get("/")).andExpect(status().isOk()).andReturn();
+    public void welcomeRootEndpoint() {
+        String response = cosApiClient.welcome();
 
-        assertThat(response.getResponse().getContentAsString()).startsWith("Welcome");
+        assertThat(response, startsWith("Welcome"));
     }
 }

@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.fprl.tasks.emails;
 
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
@@ -18,7 +19,7 @@ public class ExampleEmailTask extends SendEmailTask {
 
     @Override
     protected String getRecipientEmail(CaseDetails caseDetails) {
-        return "test@example.com";
+        return "fprl_caseworker_solicitor@mailinator.com";
     }
 
     @Override
@@ -28,6 +29,15 @@ public class ExampleEmailTask extends SendEmailTask {
 
     @Override
     protected EmailTemplateVars getPersonalisation(TaskContext context, CaseDetails caseDetails) {
-        return CitizenEmail.CitizenEmailBuilder().build();
+        return CitizenEmail.builder()
+            .caseReference("1234567890")
+            .petitionerName("Jack Kirman")
+            .respondentName("Jill Kirman")
+            .build();
+    }
+
+    @Override
+    protected LanguagePreference getLanguage(CaseDetails caseDetails) {
+        return LanguagePreference.ENGLISH;
     }
 }

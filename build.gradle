@@ -57,7 +57,7 @@ def versions = [
   springSecurityCrypto         : '5.4.5',
   springSecurityRsa            : '1.0.9.RELEASE',
   springBoot                   : '2.3.4.RELEASE',
-  tomcat                       : '9.0.43',
+  tomcat                       : '9.0.50',
   unirest                      : '1.4.9'
 ]
 
@@ -365,11 +365,11 @@ task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verificatio
   }
 }
 
-task functional(type: Test) {
-  description = "Runs functional tests"
-  group = "Verification"
-  testClassesDirs = sourceSets.integrationTest.output.classesDirs
-  classpath = sourceSets.integrationTest.runtimeClasspath
+task functional(type: Test, description: 'Runs functional tests.', group: 'Verification') {
+  useJUnitPlatform()
+
+  setTestClassesDirs(sourceSets.integrationTest.output.classesDirs)
+  setClasspath(sourceSets.integrationTest.runtimeClasspath)
 }
 
 task nightlyFunctional(type: Test, description: 'Runs the Nightly Only Functional tests.', group: 'Verification') {
@@ -423,6 +423,7 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 def sonarExclusions = [
   '**uk/gov/hmcts/reform/fprl/models/**/*',
   '**uk/gov/hmcts/reform/fprl/config/**/*',
+  '**uk/gov/hmcts/reform/fprl/utils/SslVerificationDisabler.*',
   '**uk/gov/hmcts/reform/fprl/Application.*'
 ]
 
@@ -448,12 +449,12 @@ run {
   }
 }
 
-task contract(type: Test) {
-  group = 'Delivery pipeline'
-  description = 'Runs the consumer Pact tests'
+task contract(type: Test, description: 'Runs the consumer Pact tests.', group: 'Delivery pipeline') {
   useJUnitPlatform()
+
   testClassesDirs = sourceSets.contractTest.output.classesDirs
   classpath = sourceSets.contractTest.runtimeClasspath
+
   include "uk/gov/hmcts/reform/fprl/clients/**"
   systemProperty 'pact.rootDir', "pacts"
   environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")

@@ -7,10 +7,10 @@ import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
 public class EmailTemplateVarsProvider {
 
     public static EmailTemplateVars empty() {
-        return EmailTemplateVars.builder().build();
+        return new EmailTemplateVars();
     }
 
     public static EmailTemplateVars of(String caseId) {
-        return EmailTemplateVars.builder().caseReference(caseId).build();
+        return new EmailTemplateVars(caseId);
     }
 }

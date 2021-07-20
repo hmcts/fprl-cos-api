@@ -24,7 +24,7 @@ public class CallbackController {
     private final ExampleService exampleService;
 
     /**
-     * It just an example.
+     * It's just an example - to be removed when there are real tasks sending emails.
      */
     @PostMapping(path = "/send-email", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
     @ApiOperation(value = "Callback to send email")

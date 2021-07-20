@@ -9,12 +9,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import uk.gov.hmcts.reform.fprl.clients.EmailClient;
 import uk.gov.hmcts.reform.fprl.config.EmailTemplatesConfig;
 import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
 import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
 import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.utils.CitizenEmailProvider;
+import uk.gov.service.notify.NotificationClient;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
 
@@ -43,8 +43,9 @@ public class EmailServiceTest {
         "petitionerName", TEST_PETITIONER_NAME,
         "respondentName", TEST_RESPONDENT_NAME
     );
+
     @Mock
-    private EmailClient emailClient;
+    private NotificationClient notificationClient;
 
     @Mock
     private ObjectMapper objectMapper;
@@ -64,7 +65,7 @@ public class EmailServiceTest {
                     LanguagePreference.WELSH, ImmutableMap.of(EmailTemplateNames.EXAMPLE, EMAIL_TEMPLATE_ID_2)
                 )
             );
-        when(emailClient.sendEmail(any(), any(), any(), any())).thenReturn(mock(SendEmailResponse.class));
+        when(notificationClient.sendEmail(any(), any(), any(), any())).thenReturn(mock(SendEmailResponse.class));
         when(objectMapper.convertValue(expectedEmailVars, Map.class)).thenReturn(expectedEmailVarsAsMap);
     }
 
@@ -77,7 +78,7 @@ public class EmailServiceTest {
             LanguagePreference.ENGLISH
         );
 
-        verify(emailClient).sendEmail(
+        verify(notificationClient).sendEmail(
             eq(EMAIL_TEMPLATE_ID_1),
             eq(TEST_EMAIL),
             eq(expectedEmailVarsAsMap),
@@ -87,7 +88,7 @@ public class EmailServiceTest {
 
     @Test
     public void sendShouldHandleNotificationClientExceptionAndRethrow() throws NotificationClientException {
-        when(emailClient.sendEmail(eq(EMAIL_TEMPLATE_ID_2), any(), any(), any()))
+        when(notificationClient.sendEmail(eq(EMAIL_TEMPLATE_ID_2), any(), any(), any()))
             .thenThrow(NotificationClientException.class);
 
         assertThrows(
@@ -97,7 +98,7 @@ public class EmailServiceTest {
             )
         );
 
-        verify(emailClient).sendEmail(
+        verify(notificationClient).sendEmail(
             eq(EMAIL_TEMPLATE_ID_2),
             eq(TEST_EMAIL),
             eq(expectedEmailVarsAsMap),

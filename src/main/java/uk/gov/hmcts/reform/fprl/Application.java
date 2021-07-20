@@ -11,9 +11,7 @@ import uk.gov.hmcts.reform.fprl.utils.SslVerificationDisabler;
 
 import javax.annotation.PostConstruct;
 
-@EnableFeignClients(basePackages = {
-    "uk.gov.hmcts.reform.fprl"
-})
+@EnableFeignClients(basePackages = {"uk.gov.hmcts.reform.fprl"})
 /*
  I don't know why this was not working, but I did what was suggested here:
  https://stackoverflow.com/questions/26889970/
@@ -26,9 +24,7 @@ import javax.annotation.PostConstruct;
  */
 @SpringBootConfiguration
 @EnableAutoConfiguration
-@ComponentScan(
-    basePackages = "uk.gov.hmcts.reform.fprl"
-)
+@ComponentScan(basePackages = "uk.gov.hmcts.reform.fprl")
 @Slf4j
 public class Application {
 
@@ -42,9 +38,9 @@ public class Application {
     @PostConstruct
     public void initApp() throws Exception {
         if (runsLocally) {
-            log.info("Application running locally, turning off SSL verification so that tests accessing" +
-                         " HTTPS resources can run on machines with ZScaler proxy");
-            SslVerificationDisabler.turnOffSSLVerification();
+            log.info("Application running locally, turning off SSL verification so that tests accessing"
+                         + " HTTPS resources can run on machines with ZScaler proxy");
+            SslVerificationDisabler.turnOffSslVerification();
         } else {
             log.info("Application not detected to run on a local machine");
         }

@@ -34,7 +34,8 @@ public class EmailService {
         final String templateId = getTemplateId(templateName, languagePreference);
 
         try {
-            SendEmailResponse response = notificationClient.sendEmail(templateId, email, toMap(templateVars), reference);
+            SendEmailResponse response = notificationClient.sendEmail(templateId, email, toMap(templateVars),
+                                                                      reference);
             onAfterLog(templateName, templateVars.getCaseReference(), reference, response.getNotificationId());
         } catch (NotificationClientException exception) {
             throw new IllegalArgumentException(exception);

@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.fprl.utils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
@@ -9,6 +12,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SslVerificationDisabler {
 
     public static void turnOffSslVerification() throws KeyManagementException, NoSuchAlgorithmException {
@@ -19,9 +23,11 @@ public class SslVerificationDisabler {
                 }
 
                 public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                    /* no check actually performed to suppress errors for self-signed certs */
                 }
 
                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                    /* no check actually performed to suppress errors for self-signed certs */
                 }
             }
         };

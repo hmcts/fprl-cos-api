@@ -1,6 +1,8 @@
 server:
   port: 4044
 
+runs-locally: ${RUNS_LOCALLY:true}
+
 management:
   endpoint:
     health:
@@ -63,9 +65,9 @@ uk:
       api:
         key: ${UK_GOV_NOTIFY_API_KEY:dummy}
         baseUrl: https://api.notifications.service.gov.uk
-    email:
-      templates:
-        english:
-          EXAMPLE: 111
-        welsh:
-          EXAMPLE: 222
+      email:
+        templates:
+          english:
+            EXAMPLE: 111
+          welsh:
+            EXAMPLE: 222

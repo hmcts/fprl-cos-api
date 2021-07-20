@@ -11,13 +11,11 @@ import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
 import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.services.EmailService;
 import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
-import uk.gov.hmcts.reform.fprl.utils.CitizenEmailProvider;
 import uk.gov.hmcts.reform.fprl.utils.TaskContextProvider;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_EMAIL;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleEmailTaskTest {

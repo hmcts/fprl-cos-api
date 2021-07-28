@@ -18,5 +18,5 @@ public interface PbaValidationClient {
     ResponseEntity<PbaOrganisationResponse> retrievePbaNumbers(
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation,
         @RequestHeader(CustomHttpHeaders.SERVICE_AUTHORIZATION) String serviceAuthorisation,
-        @RequestParam(name = "email") String email);
+        @RequestHeader("UserEmail") String email);
 }

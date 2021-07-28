@@ -8,6 +8,7 @@ import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
 import au.com.dius.pact.core.model.annotations.PactFolder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.fluent.Executor;
 import org.json.JSONException;
 import org.junit.After;
@@ -64,15 +65,13 @@ public class PbaClientConsumerTest {
             .given("Pbas organisational data exists for identifier " + ORGANISATION_EMAIL)
             .uponReceiving("a request for information for that organisation's pbas")
             .path("/refdata/external/v1/organisations/pbas")
-            .query("email=" + ORGANISATION_EMAIL)
             .method("GET")
             .headers(
-                HttpHeaders.AUTHORIZATION,
-                SOME_AUTHORIZATION_TOKEN,
-                SERVICE_AUTHORIZATION,
-                SOME_SERVICE_AUTHORIZATION_TOKEN
+                HttpHeaders.AUTHORIZATION, SOME_AUTHORIZATION_TOKEN,
+                SERVICE_AUTHORIZATION, SOME_SERVICE_AUTHORIZATION_TOKEN,
+                "UserEmail", ORGANISATION_EMAIL
             ).willRespondWith()
-            .status(200)
+            .status(HttpStatus.SC_OK)
             .body(buildOrganisationalResponsePactDsl())
             .toPact();
     }

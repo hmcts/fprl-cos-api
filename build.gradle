@@ -27,6 +27,7 @@ plugins {
 def versions = [
   awaitility                   : '4.0.2',
   bcpkixJdk15on                : '1.64',
+  ccdClient                    : '4.7.6',
   commonsBeanUtils             : '1.9.4',
   commonsIo                    : '2.7',
   commonsLang3                 : '3.9',
@@ -94,8 +95,8 @@ allprojects {
 
   repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     jcenter()
-    maven { url "https://dl.bintray.com/hmcts/hmcts-maven" }
     maven { url 'https://repo.spring.io/libs-milestone' }
   }
 
@@ -249,7 +250,7 @@ dependencies {
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springBoot
   implementation group: 'org.springframework.retry', name: 'spring-retry'
-  //  implementation group: 'uk.gov.hmcts.reform', name: 'idam-client', version: versions.idamClient
+  implementation group: 'com.github.hmcts', name: 'ccd-client', version: versions.ccdClient
   implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
   implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
   implementation group: 'uk.gov.hmcts.reform', name: 'logging-httpcomponents', version: versions.reformsJavaLogging

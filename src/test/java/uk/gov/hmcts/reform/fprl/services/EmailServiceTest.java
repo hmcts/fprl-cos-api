@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.fprl.services;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Before;

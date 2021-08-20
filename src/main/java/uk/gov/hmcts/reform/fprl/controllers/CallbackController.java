@@ -15,8 +15,6 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackResponse;
 import uk.gov.hmcts.reform.fprl.services.ApplicationConsiderationTimetableValidationService;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
-import uk.gov.hmcts.reform.fprl.tasks.ApplicationConsiderationTimetableValidationTask;
-import uk.gov.hmcts.reform.fprl.workflows.SingleTaskWorkflow;
 
 import java.util.List;
 

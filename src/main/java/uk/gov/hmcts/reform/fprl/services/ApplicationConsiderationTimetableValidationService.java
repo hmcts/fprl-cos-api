@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.fprl.services;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.platform.commons.util.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +21,8 @@ public class ApplicationConsiderationTimetableValidationService {
     public List<String> getErrorForApplicationNoticeEfforts(Map<String, Object> caseData) {
         boolean noticeEffortsIsBlank = Objects.toString(caseData.get("ApplicationNoticeEfforts"), "").isBlank();
 
-        return applicationToBeConsideredInLessThan48Hours(caseData) && noticeEffortsIsBlank ?
-            singletonList("Proposed timetable has to include either days or hours")
+        return applicationToBeConsideredInLessThan48Hours(caseData) && noticeEffortsIsBlank
+            ? singletonList("Proposed timetable has to include either days or hours")
             : emptyList();
     }
 

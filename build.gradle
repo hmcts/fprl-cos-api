@@ -422,6 +422,7 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 def sonarExclusions = [
   '**uk/gov/hmcts/reform/fprl/models/**/*',
   '**uk/gov/hmcts/reform/fprl/config/**/*',
+  '**uk/gov/hmcts/reform/fprl/**/*',
   '**uk/gov/hmcts/reform/fprl/utils/SslVerificationDisabler.*',
   '**uk/gov/hmcts/reform/fprl/Application.*'
 ]

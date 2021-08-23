@@ -13,10 +13,9 @@ import uk.gov.hmcts.reform.ccd.client.model.AboutToStartOrSubmitCallbackResponse
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackResponse;
-import uk.gov.hmcts.reform.fprl.services.ApplicationConsiderationTimetableValidationService;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
-
-import java.util.List;
+import uk.gov.hmcts.reform.fprl.workflows.ApplicationConsiderationTimetableValidationWorkflow;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.springframework.http.ResponseEntity.ok;
@@ -25,7 +24,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequiredArgsConstructor
 public class CallbackController {
 
-    private final ApplicationConsiderationTimetableValidationService applicationConsiderationTimetableValidationService;
+    private final ApplicationConsiderationTimetableValidationWorkflow applicationConsiderationTimetableValidationWorkflow;
     private final ExampleService exampleService;
 
     /**
@@ -53,13 +52,12 @@ public class CallbackController {
         @ApiResponse(code = 400, message = "Bad Request")})
     public ResponseEntity<uk.gov.hmcts.reform.ccd.client.model.CallbackResponse> validateApplicationConsiderationTimetable(
         @RequestBody uk.gov.hmcts.reform.ccd.client.model.CallbackRequest callbackRequest
-    ) {
-        List<String> errors = applicationConsiderationTimetableValidationService.getErrorForApplicationNoticeEfforts(
-            callbackRequest.getCaseDetails().getData());
+    ) throws WorkflowException {
+        WorkflowResult workflowResult = applicationConsiderationTimetableValidationWorkflow.run(callbackRequest);
 
         return ok(
             AboutToStartOrSubmitCallbackResponse.builder()
-                .errors(errors)
+                .errors(workflowResult.getErrors())
                 .build()
         );
     }

@@ -32,6 +32,7 @@ public class ApplicationTimetableEffortsValidationTaskTest {
         assertThat(workflowResult.getErrors(), hasSize(1));
         assertThat(workflowResult.getErrors().get(0), is(ERROR_MSG_NOTICE_EFFORTS_REQUIRED));
     }
+
     @Test
     public void givenEffortsDetails_whenApplicationToBeConsideredInLessThan48Hours_thenNoErrorReturnedInResult() {
         WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(

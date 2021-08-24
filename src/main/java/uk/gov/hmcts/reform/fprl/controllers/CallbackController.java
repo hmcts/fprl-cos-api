@@ -57,8 +57,6 @@ public class CallbackController {
     ) throws WorkflowException {
         WorkflowResult workflowResult = applicationConsiderationTimetableValidationWorkflow.run(callbackRequest);
 
-        log.info("Validation called, errors: ", workflowResult.getErrors());
-
         return ok(
             AboutToStartOrSubmitCallbackResponse.builder()
                 .errors(workflowResult.getErrors())

@@ -4,14 +4,17 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
 import uk.gov.hmcts.reform.fprl.framework.task.Task;
+import uk.gov.hmcts.reform.fprl.models.YesOrNo;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 
 import java.util.Map;
 import java.util.Objects;
 
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICATION_NOTICE_EFFORTS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.DAYS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.HOURS;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.IS_APPLICATION_URGENT;
 
 @Component
 public class ApplicationTimetableEffortsValidationTask implements Task<WorkflowResult> {
@@ -22,13 +25,17 @@ public class ApplicationTimetableEffortsValidationTask implements Task<WorkflowR
     @Override
     public WorkflowResult execute(TaskContext context, WorkflowResult workflowResult) throws TaskException {
         Map<String, Object> caseData = workflowResult.getCaseData();
-        boolean noticeEffortsIsBlank = Objects.toString(caseData.get("ApplicationNoticeEfforts"), "").isBlank();
+        boolean noticeEffortsIsBlank = Objects.toString(caseData.get(APPLICATION_NOTICE_EFFORTS), "").isBlank();
 
-        if (applicationToBeConsideredInLessThan48Hours(caseData) && noticeEffortsIsBlank) {
+        if (applicationIsUrgent(caseData) && applicationToBeConsideredInLessThan48Hours(caseData) && noticeEffortsIsBlank) {
             workflowResult.getErrors().add(ERROR_MSG_NOTICE_EFFORTS_REQUIRED);
         }
 
         return workflowResult;
+    }
+
+    private boolean applicationIsUrgent(Map<String, Object> caseData) {
+        return YesOrNo.YES.equals(caseData.get(IS_APPLICATION_URGENT));
     }
 
     private boolean applicationToBeConsideredInLessThan48Hours(Map<String, Object> caseData) {

@@ -9,12 +9,13 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 import java.util.Map;
 import java.util.Objects;
 
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.DAYS;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.HOURS;
+
 @Component
 public class ApplicationTimetableEffortsValidationTask implements Task<WorkflowResult> {
 
-    public static final String APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS = "ApplicationConsideredInDaysAndHours";
-    public static final String DAYS = "days";
-    public static final String HOURS = "hours";
     public static final String ERROR_MSG_NOTICE_EFFORTS_REQUIRED =
         "Please specify what efforts have been made to put each respondent on notice of the application";
 

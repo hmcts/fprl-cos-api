@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.fprl.models.dto.ccd;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class WorkflowResult {
     List<String> errors;
 
     public WorkflowResult(Map<String, Object> caseData) {
-        this.caseData = caseData;
+        this.caseData = new HashMap<>(caseData);
         warnings = new ArrayList<>();
         errors = new ArrayList<>();
     }

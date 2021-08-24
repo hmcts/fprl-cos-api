@@ -1,12 +1,8 @@
 buildscript {
-  ext {
-    springBootVersion = '2.3.4.RELEASE'
-  }
   repositories {
     mavenCentral()
   }
   dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.24")
   }
 }
@@ -20,13 +16,14 @@ plugins {
   id 'jacoco'
   id 'org.owasp.dependencycheck' version '6.2.2'
   id 'org.sonarqube' version '3.2.0'
-  id 'org.springframework.boot' version '2.3.4.RELEASE'
+  id 'org.springframework.boot' version '2.5.4'
   id 'au.com.dius.pact' version '4.2.6'
 }
 
 def versions = [
   awaitility                   : '4.0.2',
   bcpkixJdk15on                : '1.64',
+  ccdClient                    : '4.7.6',
   commonsBeanUtils             : '1.9.4',
   commonsIo                    : '2.7',
   commonsLang3                 : '3.9',
@@ -56,7 +53,8 @@ def versions = [
   springfoxSwagger             : '3.0.0',
   springSecurityCrypto         : '5.4.5',
   springSecurityRsa            : '1.0.9.RELEASE',
-  springBoot                   : '2.3.4.RELEASE',
+  springBoot                   : '2.5.4',
+  springCloud                  : '3.0.3',
   tomcat                       : '9.0.50',
   unirest                      : '1.4.9'
 ]
@@ -94,8 +92,8 @@ allprojects {
 
   repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     jcenter()
-    maven { url "https://dl.bintray.com/hmcts/hmcts-maven" }
     maven { url 'https://repo.spring.io/libs-milestone' }
   }
 
@@ -248,8 +246,9 @@ dependencies {
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: versions.springBoot
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springBoot
+  implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
   implementation group: 'org.springframework.retry', name: 'spring-retry'
-  //  implementation group: 'uk.gov.hmcts.reform', name: 'idam-client', version: versions.idamClient
+  implementation group: 'com.github.hmcts', name: 'ccd-client', version: versions.ccdClient
   implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
   implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
   implementation group: 'uk.gov.hmcts.reform', name: 'logging-httpcomponents', version: versions.reformsJavaLogging
@@ -297,7 +296,7 @@ dependencies {
   runtimeOnly('org.springframework.boot:spring-boot-devtools')
 
   testImplementation group: 'org.awaitility', name: 'awaitility', version: versions.awaitility
-  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.0.0'
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: versions.springCloud
   testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test') {
     exclude(module: 'commons-logging')
     exclude(module: 'android-json')

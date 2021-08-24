@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.fprl.models.YesOrNo;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -12,6 +13,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.DAYS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.HOURS;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.IS_APPLICATION_URGENT;
 import static uk.gov.hmcts.reform.fprl.tasks.ApplicationTimetableTimeValidationTask.ERROR_MSG_NOTICE_DATE_OR_TIME_REQUIRED;
 
 public class ApplicationTimetableTimeValidationTaskTest {
@@ -22,6 +24,7 @@ public class ApplicationTimetableTimeValidationTaskTest {
     @Test
     public void whenNoApplicationToBeConsideredHoursOrDays_thenErrorReturnedInResult() {
         WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(
+            IS_APPLICATION_URGENT, YesOrNo.YES,
             APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of()));
         TaskContext taskContext = new DefaultTaskContext();
 
@@ -34,6 +37,7 @@ public class ApplicationTimetableTimeValidationTaskTest {
     @Test
     public void whenApplicationToBeConsideredHasHoursOrDays_thenNoErrorReturnedInResult() {
         WorkflowResult workflowResultWithHours = new WorkflowResult(ImmutableMap.of(
+            IS_APPLICATION_URGENT, YesOrNo.YES,
             APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of(
                 HOURS, "48")));
 
@@ -46,5 +50,17 @@ public class ApplicationTimetableTimeValidationTaskTest {
 
         workflowResult = applicationTimetableTimeValidationTask.execute(new DefaultTaskContext(), workflowResultWithDays);
         assertThat(workflowResult.getErrors(), hasSize(0));
+    }
+
+    @Test
+    public void givenApplicationNotUrgent_whenNoApplicationToBeConsideredHoursOrDays_thenNoErrorReturnedInResult() {
+        WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(
+            IS_APPLICATION_URGENT, YesOrNo.NO,
+            APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of()));
+        TaskContext taskContext = new DefaultTaskContext();
+
+        workflowResult = applicationTimetableTimeValidationTask.execute(taskContext, workflowResult);
+        assertThat(workflowResult.getErrors(), hasSize(0));
+        assertThat(taskContext.hasTaskFailed(), is(false));
     }
 }

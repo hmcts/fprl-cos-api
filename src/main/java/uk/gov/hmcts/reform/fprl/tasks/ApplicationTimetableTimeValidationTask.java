@@ -22,7 +22,7 @@ public class ApplicationTimetableTimeValidationTask implements Task<WorkflowResu
     @Override
     public WorkflowResult execute(TaskContext context, WorkflowResult workflowResult) throws TaskException {
         Map<String, Object> caseData = workflowResult.getCaseData();
-        if (applicationIsUrgent(caseData) && !timetambleContainsEitherDaysOrHours(caseData)) {
+        if (applicationIsUrgent(caseData) && !timetableContainsEitherDaysOrHours(caseData)) {
             workflowResult.getErrors().add(ERROR_MSG_NOTICE_DATE_OR_TIME_REQUIRED);
             context.setTaskFailed(true);    // stop further validation tasks from running when no days or hours provided
         }
@@ -34,7 +34,7 @@ public class ApplicationTimetableTimeValidationTask implements Task<WorkflowResu
         return YesOrNo.YES.equals(caseData.get(IS_APPLICATION_URGENT));
     }
 
-    private boolean timetambleContainsEitherDaysOrHours(Map<String, Object> caseData) {
+    private boolean timetableContainsEitherDaysOrHours(Map<String, Object> caseData) {
         Map<String, Object> applicationConsideredInDaysAndHours = (Map<String, Object>) caseData.get(APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS);
 
         return applicationConsideredInDaysAndHours != null

@@ -27,7 +27,7 @@ public class SwaggerPublisherTest extends IntegrationTest {
     @Autowired
     private CosApiClient cosApiClient;
 
-    @DisplayName("Generate swagger documentation")
+    @DisplayName("Generate swagger documentation test")
     @Test
     public void generateDocs() throws Exception {
         byte[] specs = cosApiClient.apiDocs();

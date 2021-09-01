@@ -25,7 +25,8 @@ public class ApplicationTimetableTimeValidationTask implements Task<WorkflowResu
     public WorkflowResult execute(TaskContext context, WorkflowResult workflowResult) throws TaskException {
         Map<String, Object> caseData = workflowResult.getCaseData();
 
-        log.info("applicationIsUrgent = {}, timetableContainsEitherDaysOrHours = {}", applicationIsUrgent(caseData), timetableContainsEitherDaysOrHours(caseData));
+        log.info("applicationIsUrgent = {}, timetableContainsEitherDaysOrHours = {}", applicationIsUrgent(caseData),
+                 timetableContainsEitherDaysOrHours(caseData));
 
         if (applicationIsUrgent(caseData) && !timetableContainsEitherDaysOrHours(caseData)) {
             log.info("Inside the flow ApplicationTimetableTimeValidationTask adding error");

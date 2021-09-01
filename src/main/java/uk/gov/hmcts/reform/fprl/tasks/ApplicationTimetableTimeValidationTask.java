@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.fprl.tasks;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
@@ -15,6 +16,7 @@ import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.HOURS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.IS_APPLICATION_URGENT;
 
 @Component
+@Slf4j
 public class ApplicationTimetableTimeValidationTask implements Task<WorkflowResult> {
 
     public static final String ERROR_MSG_NOTICE_DATE_OR_TIME_REQUIRED = "Please provide either days or hours in proposed timetable";
@@ -22,7 +24,11 @@ public class ApplicationTimetableTimeValidationTask implements Task<WorkflowResu
     @Override
     public WorkflowResult execute(TaskContext context, WorkflowResult workflowResult) throws TaskException {
         Map<String, Object> caseData = workflowResult.getCaseData();
+
+        log.info("applicationIsUrgent = {}, timetableContainsEitherDaysOrHours = {}", applicationIsUrgent(caseData), timetableContainsEitherDaysOrHours(caseData));
+
         if (applicationIsUrgent(caseData) && !timetableContainsEitherDaysOrHours(caseData)) {
+            log.info("Inside the flow ApplicationTimetableTimeValidationTask adding error");
             workflowResult.getErrors().add(ERROR_MSG_NOTICE_DATE_OR_TIME_REQUIRED);
             context.setTaskFailed(true);    // stop further validation tasks from running when no days or hours provided
         }

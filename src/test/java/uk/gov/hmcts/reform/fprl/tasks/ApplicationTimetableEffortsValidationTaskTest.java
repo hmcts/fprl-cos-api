@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.fprl.tasks;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
-import uk.gov.hmcts.reform.fprl.models.YesOrNo;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -14,6 +13,8 @@ import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICATION
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.DAYS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.HOURS;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.IS_APPLICATION_URGENT;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
 import static uk.gov.hmcts.reform.fprl.tasks.ApplicationTimetableEffortsValidationTask.ERROR_MSG_NOTICE_EFFORTS_REQUIRED;
 
 public class ApplicationTimetableEffortsValidationTaskTest {
@@ -24,7 +25,7 @@ public class ApplicationTimetableEffortsValidationTaskTest {
     @Test
     public void givenNoEffortsDetails_whenApplicationToBeConsideredInLessThan48Hours_thenErrorReturnedInResult() {
         WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(
-            IS_APPLICATION_URGENT, YesOrNo.YES,
+            IS_APPLICATION_URGENT, YES,
             APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of(
                 DAYS, "1")));
 
@@ -36,7 +37,7 @@ public class ApplicationTimetableEffortsValidationTaskTest {
     @Test
     public void givenEffortsDetails_whenApplicationToBeConsideredInLessThan48Hours_thenNoErrorReturnedInResult() {
         WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(
-            IS_APPLICATION_URGENT, YesOrNo.YES,
+            IS_APPLICATION_URGENT, YES,
             APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of(
                 DAYS, "1"),
             APPLICATION_NOTICE_EFFORTS, "efforts described"));
@@ -48,7 +49,7 @@ public class ApplicationTimetableEffortsValidationTaskTest {
     @Test
     public void givenNoEffortsDetails_whenApplicationToBeConsideredIn48HoursOrMore_thenNoErrorReturnedInResult() {
         WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(
-            IS_APPLICATION_URGENT, YesOrNo.YES,
+            IS_APPLICATION_URGENT, YES,
             APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of(
                 HOURS, "48")));
 
@@ -59,7 +60,7 @@ public class ApplicationTimetableEffortsValidationTaskTest {
     @Test
     public void givenApplicationIsNotUrgentAndNoEffortsDetails_whenApplicationToBeConsideredInLessThan48Hours_thenNoErrorReturnedInResult() {
         WorkflowResult workflowResult = new WorkflowResult(ImmutableMap.of(
-            IS_APPLICATION_URGENT, YesOrNo.NO,
+            IS_APPLICATION_URGENT, NO,
             APPLICATION_CONSIDERED_IN_DAYS_AND_HOURS, ImmutableMap.of(
                 DAYS, "1")));
 

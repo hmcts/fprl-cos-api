@@ -12,6 +12,7 @@ import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
 import uk.gov.hmcts.reform.fprl.services.EmailService;
 import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
 import uk.gov.hmcts.reform.fprl.utils.TaskContextProvider;
+import uk.gov.hmcts.reform.fprl.utils.TestConstants;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -44,18 +45,18 @@ public class ExampleEmailTaskTest {
         task.execute(TaskContextProvider.empty(), CaseDetailsProvider.empty());
 
         verify(emailService).send(
-            "fprl_caseworker_solicitor@mailinator.com",
+            TestConstants.TEST_SOLICITOR_EMAIL,
             EmailTemplateNames.EXAMPLE,
             expectedPersonalisation(),
             LanguagePreference.ENGLISH
         );
     }
 
-    private EmailTemplateVars expectedPersonalisation() {
+    public static EmailTemplateVars expectedPersonalisation() {
         return CitizenEmail.builder()
-            .caseReference("1234567890")
-            .petitionerName("Jack Kirman")
-            .respondentName("Jill Kirman")
+            .caseReference(TestConstants.TEST_CASE_ID)
+            .petitionerName(TestConstants.TEST_PETITIONER_NAME)
+            .respondentName(TestConstants.TEST_RESPONDENT_NAME)
             .build();
     }
 }

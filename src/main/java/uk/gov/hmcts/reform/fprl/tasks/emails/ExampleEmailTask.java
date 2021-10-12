@@ -29,10 +29,11 @@ public class ExampleEmailTask extends SendEmailTask {
 
     @Override
     protected EmailTemplateVars getPersonalisation(TaskContext context, CaseDetails caseDetails) {
+        // This is fake, we should get these details from CaseDetails case data, but it's just to show a concept
         return CitizenEmail.builder()
             .caseReference("1234567890")
-            .petitionerName("Jack Kirman")
-            .respondentName("Jill Kirman")
+            .petitionerName("Adam Kowalski")
+            .respondentName("Zdzislaw Nowakowski")
             .build();
     }
 

@@ -25,7 +25,6 @@ public class ApplicationTimetableTimeValidationTask implements Task<WorkflowResu
         if (applicationIsUrgent(caseData) && !timetambleContainsEitherDaysOrHours(caseData)) {
             workflowResult.getErrors().add(ERROR_MSG_NOTICE_DATE_OR_TIME_REQUIRED);
             context.setTaskFailed(true);    // stop further validation tasks from running when no days or hours provided
-            context.setTransientObject("Patryk-data", "it works");
         }
 
         return workflowResult;

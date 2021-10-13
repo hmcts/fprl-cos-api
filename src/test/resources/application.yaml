@@ -61,7 +61,7 @@ pba:
 
 feature-toggle:
   toggle:
-    example: ${FEATURE_EXAMPLE:false}
+    example: ${FEATURE_EXAMPLE:true}
     example_off: ${FEATURE_EXAMPLE_OFF:false}
 
 uk:

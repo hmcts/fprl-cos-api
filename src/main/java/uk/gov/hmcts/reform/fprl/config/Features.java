@@ -14,7 +14,9 @@ public enum Features {
     /**
      * This is just an example. It should be removed when you have a real flag added.
      */
-    EXAMPLE("example");
+    EXAMPLE("example"),
+    EXAMPLE_OFF("example_off"),
+    EXAMPLE_NOT_DEFINED("this-flag-is-not-defined-in-config");
 
     private final String name;
 

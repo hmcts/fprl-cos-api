@@ -59,6 +59,11 @@ pba:
       api:
         baseurl: ${PRD_API_BASEURL:http://localhost:8892}
 
+feature-toggle:
+  toggle:
+    example: ${FEATURE_EXAMPLE:false}
+    example_off: ${FEATURE_EXAMPLE_OFF:false}
+
 uk:
   gov:
     notify:

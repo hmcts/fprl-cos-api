@@ -16,7 +16,7 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackResponse;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
 import uk.gov.hmcts.reform.fprl.workflows.ApplicationConsiderationTimetableValidationWorkflow;
-import uk.gov.hmcts.reform.fprl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
+import uk.gov.hmcts.reform.fprl.workflows.ConfirmMiamApplicationOrExemptionWorkflow;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.springframework.http.ResponseEntity.ok;
@@ -27,7 +27,7 @@ public class CallbackController {
 
     private final ApplicationConsiderationTimetableValidationWorkflow applicationConsiderationTimetableValidationWorkflow;
     private final ExampleService exampleService;
-    private final ValidateMiamApplicationOrExemptionWorkflow validateMiamApplicationOrExemptionWorkflow;
+    private final ConfirmMiamApplicationOrExemptionWorkflow confirmMiamApplicationOrExemptionWorkflow;
 
 
     /**
@@ -65,15 +65,15 @@ public class CallbackController {
         );
     }
 
-    @PostMapping(path = "/validate-miam-application-or-exemption", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
-    @ApiOperation(value = "Callback to confirm that a MIAM has been attended or applicant is exempt.")
+    @PostMapping(path = "/confirm-miam-application-or-exemption", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
+    @ApiOperation(value = "Callback to confirm that a MIAM has been attended or applicant is exempt. Returns error message if confirmation fails")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Callback processed.", response = CallbackResponse.class),
         @ApiResponse(code = 400, message = "Bad Request")})
-    public ResponseEntity<uk.gov.hmcts.reform.ccd.client.model.CallbackResponse> validateMiamApplicationOrExemption(
+    public ResponseEntity<uk.gov.hmcts.reform.ccd.client.model.CallbackResponse> confirmMiamApplicationOrExemption(
         @RequestBody uk.gov.hmcts.reform.ccd.client.model.CallbackRequest callbackRequest
     ) throws WorkflowException {
-        WorkflowResult workflowResult = validateMiamApplicationOrExemptionWorkflow.run(callbackRequest);
+        WorkflowResult workflowResult = confirmMiamApplicationOrExemptionWorkflow.run(callbackRequest);
 
         return ok(
             AboutToStartOrSubmitCallbackResponse.builder()

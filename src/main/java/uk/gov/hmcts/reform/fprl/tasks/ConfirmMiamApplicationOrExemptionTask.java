@@ -14,7 +14,7 @@ import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.*;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
 
 @Component
-public class ValidateMiamApplicationOrExemptionTask implements Task<WorkflowResult> {
+public class ConfirmMiamApplicationOrExemptionTask implements Task<WorkflowResult> {
 
     public static final String ERROR_MSG_MIAM =
         "You cannot make this application unless the applicant has either attended, or is exempt from attending a MIAM";
@@ -30,7 +30,6 @@ public class ValidateMiamApplicationOrExemptionTask implements Task<WorkflowResu
 
         return payload;
     }
-
 
     private boolean applicantHasAttendedMIAM(Map<String, Object> caseData) {
         return YES.equals(caseData.get(APPLICANT_ATTENDED_MIAM));

@@ -16,6 +16,7 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackResponse;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
 import uk.gov.hmcts.reform.fprl.workflows.ApplicationConsiderationTimetableValidationWorkflow;
+import uk.gov.hmcts.reform.fprl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.springframework.http.ResponseEntity.ok;
@@ -26,6 +27,8 @@ public class CallbackController {
 
     private final ApplicationConsiderationTimetableValidationWorkflow applicationConsiderationTimetableValidationWorkflow;
     private final ExampleService exampleService;
+    private final ValidateMiamApplicationOrExemptionWorkflow validateMiamApplicationOrExemptionWorkflow;
+
 
     /**
      * It's just an example - to be removed when there are real tasks sending emails.
@@ -61,4 +64,25 @@ public class CallbackController {
                 .build()
         );
     }
+
+    @PostMapping(path = "/validate-miam-application-or-exemption", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
+    @ApiOperation(value = "Callback to confirm that a MIAM has been attended or applicant is exempt.")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Callback processed.", response = CallbackResponse.class),
+        @ApiResponse(code = 400, message = "Bad Request")})
+    public ResponseEntity<uk.gov.hmcts.reform.ccd.client.model.CallbackResponse> validateMiamApplicationOrExemption(
+        @RequestBody uk.gov.hmcts.reform.ccd.client.model.CallbackRequest callbackRequest
+    ) throws WorkflowException {
+        WorkflowResult workflowResult = validateMiamApplicationOrExemptionWorkflow.run(callbackRequest);
+
+        return ok(
+            AboutToStartOrSubmitCallbackResponse.builder()
+                .errors(workflowResult.getErrors())
+                .build()
+
+        );
+    }
+
+
+
 }

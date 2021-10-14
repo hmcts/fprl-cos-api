@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.fprl.tasks;
 
+import com.google.common.collect.ImmutableMap;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
 import uk.gov.hmcts.reform.fprl.framework.task.Task;
@@ -8,9 +10,8 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 
 import java.util.Map;
 
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_ATTENDED_MIAM;
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.*;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
 
 @Component
 public class ValidateMiamApplicationOrExemptionTask implements Task<WorkflowResult> {
@@ -27,7 +28,7 @@ public class ValidateMiamApplicationOrExemptionTask implements Task<WorkflowResu
             payload.getErrors().add(ERROR_MSG_MIAM);
         }
 
-        return new WorkflowResult(payload.getCaseData());
+        return payload;
     }
 
 
@@ -40,3 +41,4 @@ public class ValidateMiamApplicationOrExemptionTask implements Task<WorkflowResu
     }
 
 }
+

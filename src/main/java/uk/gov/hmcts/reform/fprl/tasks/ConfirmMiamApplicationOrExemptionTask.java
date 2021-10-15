@@ -1,8 +1,6 @@
 package uk.gov.hmcts.reform.fprl.tasks;
 
-import com.google.common.collect.ImmutableMap;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
 import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
 import uk.gov.hmcts.reform.fprl.framework.task.Task;
@@ -10,9 +8,10 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 
 import java.util.Map;
 
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
+
 
 @Component
 public class ConfirmMiamApplicationOrExemptionTask implements Task<WorkflowResult> {
@@ -25,18 +24,18 @@ public class ConfirmMiamApplicationOrExemptionTask implements Task<WorkflowResul
 
         Map<String, Object> caseData = payload.getCaseData();
 
-        if (!applicantHasAttendedMIAM(caseData) && !applicantIsClaimingMIAMExemption(caseData)) {
+        if (!applicantHasAttendedMiam(caseData) && !applicantIsClaimingMiamExemption(caseData)) {
             payload.getErrors().add(ERROR_MSG_MIAM);
         }
 
         return payload;
     }
 
-    private boolean applicantHasAttendedMIAM(Map<String, Object> caseData) {
+    private boolean applicantHasAttendedMiam(Map<String, Object> caseData) {
         return YES.equals(caseData.get(APPLICANT_ATTENDED_MIAM));
     }
 
-    private boolean applicantIsClaimingMIAMExemption(Map<String, Object> caseData) {
+    private boolean applicantIsClaimingMiamExemption(Map<String, Object> caseData) {
         return YES.equals(caseData.get(CLAIMING_EXEMPTION_MIAM));
     }
 

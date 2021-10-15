@@ -10,8 +10,9 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 
 import java.util.Map;
 
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.*;
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_ATTENDED_MIAM;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
 
 @Component
 public class ConfirmMiamApplicationOrExemptionTask implements Task<WorkflowResult> {

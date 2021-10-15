@@ -9,8 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.ccd.client.model.CallbackRequest;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.tasks.ApplicationTimetableEffortsValidationTask;
-import uk.gov.hmcts.reform.fprl.tasks.ApplicationTimetableTimeValidationTask;
 import uk.gov.hmcts.reform.fprl.tasks.ConfirmMiamApplicationOrExemptionTask;
 
 import static org.mockito.ArgumentMatchers.any;

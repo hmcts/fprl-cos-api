@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.fprl.controllers;
 
+import org.aspectj.weaver.ast.Call;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -8,8 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
 import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
+import uk.gov.hmcts.reform.fprl.workflows.ConfirmMiamApplicationOrExemptionWorkflow;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -21,8 +24,15 @@ public class CallbackControllerTest {
     @Mock
     private ExampleService exampleService;
 
+    @Mock
+    private ConfirmMiamApplicationOrExemptionWorkflow confirmMiamApplicationOrExemptionWorkflow;
+
+
     @InjectMocks
     private CallbackController callbackController;
+
+    @Mock
+    private WorkflowResult workflowResult;
 
     @Test
     public void testSendEmail() throws WorkflowException {
@@ -33,5 +43,22 @@ public class CallbackControllerTest {
 
         verify(exampleService).executeExampleWorkflow(caseDetails);
         verifyNoMoreInteractions(exampleService);
+    }
+
+    @Test
+    public void testConfirmMiamApplicationOrExemption() throws WorkflowException {
+        CaseDetails caseDetails  = CaseDetailsProvider.full();
+
+        uk.gov.hmcts.reform.ccd.client.model.CallbackRequest callbackRequest = uk.gov.hmcts.reform.ccd.client.model.CallbackRequest.builder().build();
+
+
+        when(confirmMiamApplicationOrExemptionWorkflow.run(callbackRequest))
+            .thenReturn(workflowResult);
+
+        callbackController.confirmMiamApplicationOrExemption(callbackRequest);
+
+        verify(confirmMiamApplicationOrExemptionWorkflow).run(callbackRequest);
+        verifyNoMoreInteractions(confirmMiamApplicationOrExemptionWorkflow);
+
     }
 }

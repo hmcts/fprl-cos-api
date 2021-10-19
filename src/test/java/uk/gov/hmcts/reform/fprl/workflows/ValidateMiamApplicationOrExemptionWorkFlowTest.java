@@ -9,28 +9,28 @@ import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.ccd.client.model.CallbackRequest;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.tasks.ConfirmMiamApplicationOrExemptionTask;
+import uk.gov.hmcts.reform.fprl.tasks.validateMiamApplicationOrExemptionTask;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ConfirmMiamApplicationOrExemptionWorkFlowTest {
+public class ValidateMiamApplicationOrExemptionWorkFlowTest {
 
-    @Mock private ConfirmMiamApplicationOrExemptionTask confirmMiamApplicationOrExemptionTask;
+    @Mock private validateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask;
 
     @InjectMocks
-    private ConfirmMiamApplicationOrExemptionWorkflow confirmMiamApplicationOrExemptionWorkflow;
+    private ValidateMiamApplicationOrExemptionWorkflow validateMiamApplicationOrExemptionWorkflow;
 
     @Test
     public void whenWorkflowRun_thenExpectedTasksInvoked() throws WorkflowException {
-        confirmMiamApplicationOrExemptionWorkflow.run(
+        validateMiamApplicationOrExemptionWorkflow.run(
             CallbackRequest.builder()
                 .caseDetails(CaseDetails.builder()
                                  .data(ImmutableMap.of())
                                  .build())
                 .build());
 
-        verify(confirmMiamApplicationOrExemptionTask).execute(any(), any());
+        verify(validateMiamApplicationOrExemptionTask).execute(any(), any());
     }
 }

@@ -3,7 +3,10 @@ package uk.gov.hmcts.reform.fprl.tasks;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
+import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,12 +15,12 @@ import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_A
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
-import static uk.gov.hmcts.reform.fprl.tasks.ConfirmMiamApplicationOrExemptionTask.ERROR_MSG_MIAM;
+import static uk.gov.hmcts.reform.fprl.tasks.validateMiamApplicationOrExemptionTask.ERROR_MSG_MIAM;
 
-public class ConfirmMiamApplicationOrExemptionTaskTest {
+public class ValidateMiamApplicationOrExemptionTaskTest {
 
-    private ConfirmMiamApplicationOrExemptionTask confirmMiamApplicationOrExemptionTask =
-        new ConfirmMiamApplicationOrExemptionTask();
+    private validateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask =
+        new validateMiamApplicationOrExemptionTask();
 
     @Test
     public void givenApplicantHasNotAttendedMiam_whenApplicantDoesNotHaveMiamExemption_thenErrorReturnedInResult() {
@@ -26,7 +29,7 @@ public class ConfirmMiamApplicationOrExemptionTaskTest {
             APPLICANT_ATTENDED_MIAM, NO,
             CLAIMING_EXEMPTION_MIAM, NO));
 
-        WorkflowResult workflowResult = confirmMiamApplicationOrExemptionTask.execute(new DefaultTaskContext(), workflowData);
+        WorkflowResult workflowResult = validateMiamApplicationOrExemptionTask.execute(new DefaultTaskContext(), workflowData);
 
         assertThat(workflowResult.getErrors().get(0), is(ERROR_MSG_MIAM));
     }
@@ -38,7 +41,7 @@ public class ConfirmMiamApplicationOrExemptionTaskTest {
             APPLICANT_ATTENDED_MIAM, YES,
             CLAIMING_EXEMPTION_MIAM, NO));
 
-        WorkflowResult workflowResult = confirmMiamApplicationOrExemptionTask.execute(new DefaultTaskContext(), workflowData);
+        WorkflowResult workflowResult = validateMiamApplicationOrExemptionTask.execute(new DefaultTaskContext(), workflowData);
 
         assertThat(workflowResult.getErrors(), hasSize(0));
     }
@@ -50,9 +53,8 @@ public class ConfirmMiamApplicationOrExemptionTaskTest {
             APPLICANT_ATTENDED_MIAM, NO,
             CLAIMING_EXEMPTION_MIAM, YES));
 
-        WorkflowResult workflowResult = confirmMiamApplicationOrExemptionTask.execute(new DefaultTaskContext(), workflowData);
+        WorkflowResult workflowResult = validateMiamApplicationOrExemptionTask.execute(new DefaultTaskContext(), workflowData);
 
         assertThat(workflowResult.getErrors(), hasSize(0));
     }
-
 }

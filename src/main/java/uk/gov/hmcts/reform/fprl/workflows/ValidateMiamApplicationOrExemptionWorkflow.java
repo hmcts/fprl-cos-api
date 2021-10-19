@@ -7,20 +7,20 @@ import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
 import uk.gov.hmcts.reform.fprl.framework.task.Task;
 import uk.gov.hmcts.reform.fprl.framework.workflow.DefaultWorkflow;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
-import uk.gov.hmcts.reform.fprl.tasks.ConfirmMiamApplicationOrExemptionTask;
+import uk.gov.hmcts.reform.fprl.tasks.validateMiamApplicationOrExemptionTask;
 
 @Component
 @RequiredArgsConstructor
-public class ConfirmMiamApplicationOrExemptionWorkflow extends DefaultWorkflow<WorkflowResult> {
+public class ValidateMiamApplicationOrExemptionWorkflow extends DefaultWorkflow<WorkflowResult> {
 
-    private final ConfirmMiamApplicationOrExemptionTask confirmMiamApplicationOrExemptionTask;
+    private final validateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask;
 
 
     public WorkflowResult run(CallbackRequest callbackRequest) throws WorkflowException {
 
         return this.execute(
             new Task[] {
-                confirmMiamApplicationOrExemptionTask
+                validateMiamApplicationOrExemptionTask
             },
             new WorkflowResult(callbackRequest.getCaseDetails().getData())
         );

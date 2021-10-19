@@ -11,7 +11,7 @@ import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
 import uk.gov.hmcts.reform.fprl.services.ExampleService;
 import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
-import uk.gov.hmcts.reform.fprl.workflows.ConfirmMiamApplicationOrExemptionWorkflow;
+import uk.gov.hmcts.reform.fprl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -24,8 +24,7 @@ public class CallbackControllerTest {
     private ExampleService exampleService;
 
     @Mock
-    private ConfirmMiamApplicationOrExemptionWorkflow confirmMiamApplicationOrExemptionWorkflow;
-
+    private ValidateMiamApplicationOrExemptionWorkflow validateMiamApplicationOrExemptionWorkflow;
 
     @InjectMocks
     private CallbackController callbackController;
@@ -51,13 +50,13 @@ public class CallbackControllerTest {
         uk.gov.hmcts.reform.ccd.client.model.CallbackRequest callbackRequest = uk.gov.hmcts.reform.ccd.client.model.CallbackRequest.builder().build();
 
 
-        when(confirmMiamApplicationOrExemptionWorkflow.run(callbackRequest))
+        when(validateMiamApplicationOrExemptionWorkflow.run(callbackRequest))
             .thenReturn(workflowResult);
 
-        callbackController.confirmMiamApplicationOrExemption(callbackRequest);
+        callbackController.validateMiamApplicationOrExemption(callbackRequest);
 
-        verify(confirmMiamApplicationOrExemptionWorkflow).run(callbackRequest);
-        verifyNoMoreInteractions(confirmMiamApplicationOrExemptionWorkflow);
+        verify(validateMiamApplicationOrExemptionWorkflow).run(callbackRequest);
+        verifyNoMoreInteractions(validateMiamApplicationOrExemptionWorkflow);
 
     }
 }

@@ -10,11 +10,11 @@ import java.util.Map;
 
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
+import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
 
 
 @Component
-public class ConfirmMiamApplicationOrExemptionTask implements Task<WorkflowResult> {
+public class validateMiamApplicationOrExemptionTask implements Task<WorkflowResult> {
 
     public static final String ERROR_MSG_MIAM =
         "You cannot make this application unless the applicant has either attended, or is exempt from attending a MIAM";
@@ -24,19 +24,19 @@ public class ConfirmMiamApplicationOrExemptionTask implements Task<WorkflowResul
 
         Map<String, Object> caseData = payload.getCaseData();
 
-        if (!applicantHasAttendedMiam(caseData) && !applicantIsClaimingMiamExemption(caseData)) {
+        if (applicantHasNotAttendedMiam(caseData) && applicantIsNotClaimingMiamExemption(caseData)) {
             payload.getErrors().add(ERROR_MSG_MIAM);
         }
 
         return payload;
     }
 
-    private boolean applicantHasAttendedMiam(Map<String, Object> caseData) {
-        return YES.equals(caseData.get(APPLICANT_ATTENDED_MIAM));
+    private boolean applicantHasNotAttendedMiam(Map<String, Object> caseData) {
+        return NO.equals(caseData.get(APPLICANT_ATTENDED_MIAM));
     }
 
-    private boolean applicantIsClaimingMiamExemption(Map<String, Object> caseData) {
-        return YES.equals(caseData.get(CLAIMING_EXEMPTION_MIAM));
+    private boolean applicantIsNotClaimingMiamExemption(Map<String, Object> caseData) {
+        return NO.equals(caseData.get(CLAIMING_EXEMPTION_MIAM));
     }
 
 }

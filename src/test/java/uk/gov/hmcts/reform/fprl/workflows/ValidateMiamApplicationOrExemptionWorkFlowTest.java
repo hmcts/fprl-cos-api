@@ -9,7 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.ccd.client.model.CallbackRequest;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.tasks.validateMiamApplicationOrExemptionTask;
+import uk.gov.hmcts.reform.fprl.tasks.ValidateMiamApplicationOrExemptionTask;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ValidateMiamApplicationOrExemptionWorkFlowTest {
 
-    @Mock private validateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask;
+    @Mock private ValidateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask;
 
     @InjectMocks
     private ValidateMiamApplicationOrExemptionWorkflow validateMiamApplicationOrExemptionWorkflow;

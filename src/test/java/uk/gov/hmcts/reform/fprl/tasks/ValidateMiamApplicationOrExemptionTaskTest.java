@@ -3,10 +3,7 @@ package uk.gov.hmcts.reform.fprl.tasks;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
 import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
-import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,12 +12,12 @@ import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_A
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
 import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.YES;
-import static uk.gov.hmcts.reform.fprl.tasks.validateMiamApplicationOrExemptionTask.ERROR_MSG_MIAM;
+import static uk.gov.hmcts.reform.fprl.tasks.ValidateMiamApplicationOrExemptionTask.ERROR_MSG_MIAM;
 
 public class ValidateMiamApplicationOrExemptionTaskTest {
 
-    private validateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask =
-        new validateMiamApplicationOrExemptionTask();
+    private ValidateMiamApplicationOrExemptionTask validateMiamApplicationOrExemptionTask =
+        new ValidateMiamApplicationOrExemptionTask();
 
     @Test
     public void givenApplicantHasNotAttendedMiam_whenApplicantDoesNotHaveMiamExemption_thenErrorReturnedInResult() {

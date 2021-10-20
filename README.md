@@ -1,6 +1,6 @@
-# fprl-cos-api
+# prl-cos-api
 
-[![Build Status](https://travis-ci.org/hmcts/fprl-cos-api.svg?branch=master)](https://travis-ci.org/hmcts/fprl-cos-api)
+[![Build Status](https://travis-ci.org/hmcts/prl-cos-api.svg?branch=master)](https://travis-ci.org/hmcts/prl-cos-api)
 
 ## Notes
 
@@ -35,7 +35,7 @@ Create docker image:
   docker-compose build
 ```
 
-Run the distribution (created in `build/install/fprl-cos-api` directory)
+Run the distribution (created in `build/install/prl-cos-api` directory)
 by executing the following command:
 
 ```bash

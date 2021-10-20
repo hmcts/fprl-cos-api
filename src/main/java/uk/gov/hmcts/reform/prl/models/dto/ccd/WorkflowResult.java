@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models.dto.ccd;
+package uk.gov.hmcts.reform.prl.models.dto.ccd;
 
 import lombok.Getter;
 

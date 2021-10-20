@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.config;
+package uk.gov.hmcts.reform.prl.config;
 
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

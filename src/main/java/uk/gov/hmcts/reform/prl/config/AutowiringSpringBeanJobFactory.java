@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.config;
+package uk.gov.hmcts.reform.prl.config;
 
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;

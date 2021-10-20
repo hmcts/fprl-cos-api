@@ -3,7 +3,7 @@
     "name": "referenceData_organisationalExternalPbas"
   },
   "consumer": {
-    "name": "fprl_cos"
+    "name": "prl_cos"
   },
   "interactions": [
     {

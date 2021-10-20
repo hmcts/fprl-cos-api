@@ -1,16 +1,16 @@
-package uk.gov.hmcts.reform.fprl.tasks;
+package uk.gov.hmcts.reform.prl.tasks;
 
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
-import uk.gov.hmcts.reform.fprl.framework.task.Task;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
+import uk.gov.hmcts.reform.prl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.prl.framework.exceptions.TaskException;
+import uk.gov.hmcts.reform.prl.framework.task.Task;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.WorkflowResult;
 
 import java.util.Map;
 
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.APPLICANT_ATTENDED_MIAM;
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
-import static uk.gov.hmcts.reform.fprl.models.OrchestrationConstants.NO;
+import static uk.gov.hmcts.reform.prl.models.OrchestrationConstants.APPLICANT_ATTENDED_MIAM;
+import static uk.gov.hmcts.reform.prl.models.OrchestrationConstants.CLAIMING_EXEMPTION_MIAM;
+import static uk.gov.hmcts.reform.prl.models.OrchestrationConstants.NO;
 
 
 @Component

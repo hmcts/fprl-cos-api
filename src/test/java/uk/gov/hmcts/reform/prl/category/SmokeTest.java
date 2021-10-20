@@ -1,3 +1,3 @@
-package uk.gov.hmcts.reform.fprl.category;
+package uk.gov.hmcts.reform.prl.category;
 
 public interface SmokeTest { /* category marker */ }

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.controllers;
+package uk.gov.hmcts.reform.prl.controllers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import uk.gov.hmcts.reform.fprl.Application;
+import uk.gov.hmcts.reform.prl.Application;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

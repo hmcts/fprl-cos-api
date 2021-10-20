@@ -70,7 +70,7 @@ allprojects {
   apply plugin: 'java'
   apply plugin: 'org.owasp.dependencycheck'
 
-  group = 'uk.gov.hmcts.reform.fprl'
+  group = 'uk.gov.hmcts.reform.prl'
   version = '0.0.1'
 
   checkstyle.toolVersion = '8.34'
@@ -149,15 +149,15 @@ allprojects {
 
 apply plugin: 'net.serenity-bdd.aggregator'
 
-group = 'uk.gov.hmcts.reform.fprl'
+group = 'uk.gov.hmcts.reform.prl'
 version = '0.0.1'
 sourceCompatibility = 11
 
-mainClassName = 'uk.gov.hmcts.reform.fprl.Application'
+mainClassName = 'uk.gov.hmcts.reform.prl.Application'
 
 bootJar {
   getArchiveFileName().set(provider {
-    'fprl-cos-api.jar'
+    'prl-cos-api.jar'
   })
 
   manifest {
@@ -360,7 +360,7 @@ dependencies {
 
 task smoke(type: Test, description: 'Runs the smoke tests.', group: 'Verification') {
   useJUnit {
-    includeCategories 'uk.gov.hmcts.reform.fprl.category.SmokeTest'
+    includeCategories 'uk.gov.hmcts.reform.prl.category.SmokeTest'
   }
 }
 
@@ -386,10 +386,10 @@ task nightlyFunctional(type: Test, description: 'Runs the Nightly Only Functiona
 }
 
 pitest {
-  targetClasses = ['uk.gov.hmcts.reform.divorce.fprl.*']
+  targetClasses = ['uk.gov.hmcts.reform.divorce.prl.*']
   excludedClasses = [
-    'uk.gov.hmcts.reform.divorce.fprl.config.*',
-    'uk.gov.hmcts.reform.divorce.fprl.models.*',
+    'uk.gov.hmcts.reform.divorce.prl.config.*',
+    'uk.gov.hmcts.reform.divorce.prl.models.*',
   ]
   threads = 10
   outputFormats = ['XML', 'HTML']
@@ -420,16 +420,16 @@ jacocoTestCoverageVerification {
 project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 def sonarExclusions = [
-  '**uk/gov/hmcts/reform/fprl/models/**/*',
-  '**uk/gov/hmcts/reform/fprl/config/**/*',
-  '**uk/gov/hmcts/reform/fprl/utils/SslVerificationDisabler.*',
-  '**uk/gov/hmcts/reform/fprl/Application.*'
+  '**uk/gov/hmcts/reform/prl/models/**/*',
+  '**uk/gov/hmcts/reform/prl/config/**/*',
+  '**uk/gov/hmcts/reform/prl/utils/SslVerificationDisabler.*',
+  '**uk/gov/hmcts/reform/prl/Application.*'
 ]
 
 sonarqube {
   properties {
-    property "sonar.projectName", "Family Private Law :: fprl-cos"
-    property "sonar.projectKey", "fprl-cos-api"
+    property "sonar.projectName", "Family Private Law :: prl-cos"
+    property "sonar.projectKey", "prl-cos-api"
     property "sonar.exclusions", sonarExclusions.join(", ")
     property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
     property "sonar.pitest.mode", "reuseReport"
@@ -454,7 +454,7 @@ task contract(type: Test, description: 'Runs the consumer Pact tests.', group: '
   testClassesDirs = sourceSets.contractTest.output.classesDirs
   classpath = sourceSets.contractTest.runtimeClasspath
 
-  include "uk/gov/hmcts/reform/fprl/clients/**"
+  include "uk/gov/hmcts/reform/prl/clients/**"
   systemProperty 'pact.rootDir', "pacts"
   environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
 }

@@ -2,14 +2,14 @@
 import uk.gov.hmcts.contino.AppPipelineDsl
 
 properties([
-  [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/fprl-cos-api.git'],
+  [$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/prl-cos-api.git'],
   pipelineTriggers([[$class: 'GitHubPushTrigger']])
 ])
 
 @Library("Infrastructure")
 
 def type = "java"
-def product = "fprl"
+def product = "prl"
 def component = "cos"
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -22,7 +22,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 }
 
 def secrets = [
-  'fprl-${env}': []
+  'prl-${env}': []
 ]
 
 // Vars for Kubernetes
@@ -34,7 +34,7 @@ withPipeline(type, product, component) {
   disableLegacyDeployment()
 
   after('checkout') {
-    echo 'fprl-cos-api checked out'
+    echo 'prl-cos-api checked out'
   }
 
   after('test') {

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.utils;
+package uk.gov.hmcts.reform.prl.utils;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.controllers;
+package uk.gov.hmcts.reform.prl.controllers;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.hmcts.reform.ccd.client.model.AboutToStartOrSubmitCallbackResponse;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackResponse;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
-import uk.gov.hmcts.reform.fprl.services.ExampleService;
-import uk.gov.hmcts.reform.fprl.workflows.ApplicationConsiderationTimetableValidationWorkflow;
-import uk.gov.hmcts.reform.fprl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CallbackRequest;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CallbackResponse;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.WorkflowResult;
+import uk.gov.hmcts.reform.prl.services.ExampleService;
+import uk.gov.hmcts.reform.prl.workflows.ApplicationConsiderationTimetableValidationWorkflow;
+import uk.gov.hmcts.reform.prl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.springframework.http.ResponseEntity.ok;

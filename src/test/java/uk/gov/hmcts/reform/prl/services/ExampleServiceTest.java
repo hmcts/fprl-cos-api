@@ -1,16 +1,16 @@
-package uk.gov.hmcts.reform.fprl.services;
+package uk.gov.hmcts.reform.prl.services;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import uk.gov.hmcts.reform.fprl.config.Features;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
-import uk.gov.hmcts.reform.fprl.utils.CaseDataProvider;
-import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
-import uk.gov.hmcts.reform.fprl.workflows.ExampleWorkflow;
+import uk.gov.hmcts.reform.prl.config.Features;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.utils.CaseDataProvider;
+import uk.gov.hmcts.reform.prl.utils.CaseDetailsProvider;
+import uk.gov.hmcts.reform.prl.workflows.ExampleWorkflow;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;

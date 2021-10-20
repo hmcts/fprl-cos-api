@@ -1,7 +1,7 @@
-package uk.gov.hmcts.reform.fprl.models;
+package uk.gov.hmcts.reform.prl.models;
 
 import lombok.RequiredArgsConstructor;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseData;
 
 import java.util.Optional;
 

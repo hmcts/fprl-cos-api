@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.framework.workflow;
+package uk.gov.hmcts.reform.prl.framework.workflow;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -6,10 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
-import uk.gov.hmcts.reform.fprl.framework.context.DefaultTaskContext;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.framework.task.Task;
+import uk.gov.hmcts.reform.prl.framework.context.DefaultTaskContext;
+import uk.gov.hmcts.reform.prl.framework.exceptions.TaskException;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.framework.task.Task;
 
 import static org.junit.Assert.assertEquals;
 

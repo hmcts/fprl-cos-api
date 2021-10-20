@@ -1,7 +1,7 @@
-package uk.gov.hmcts.reform.fprl.framework.task;
+package uk.gov.hmcts.reform.prl.framework.task;
 
-import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
+import uk.gov.hmcts.reform.prl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.prl.framework.exceptions.TaskException;
 
 @FunctionalInterface
 public interface Task<T> {

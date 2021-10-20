@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models;
+package uk.gov.hmcts.reform.prl.models;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

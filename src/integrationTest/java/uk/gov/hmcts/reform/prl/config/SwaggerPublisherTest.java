@@ -1,11 +1,11 @@
-package uk.gov.hmcts.reform.fprl.config;
+package uk.gov.hmcts.reform.prl.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
-import uk.gov.hmcts.reform.fprl.IntegrationTest;
-import uk.gov.hmcts.reform.fprl.util.CosApiClient;
+import uk.gov.hmcts.reform.prl.IntegrationTest;
+import uk.gov.hmcts.reform.prl.util.CosApiClient;
 
 import java.io.BufferedOutputStream;
 import java.io.OutputStream;

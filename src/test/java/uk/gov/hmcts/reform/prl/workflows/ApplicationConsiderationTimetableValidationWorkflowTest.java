@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.workflows;
+package uk.gov.hmcts.reform.prl.workflows;
 
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
@@ -8,9 +8,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.ccd.client.model.CallbackRequest;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.tasks.ApplicationTimetableEffortsValidationTask;
-import uk.gov.hmcts.reform.fprl.tasks.ApplicationTimetableTimeValidationTask;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.tasks.ApplicationTimetableEffortsValidationTask;
+import uk.gov.hmcts.reform.prl.tasks.ApplicationTimetableTimeValidationTask;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;

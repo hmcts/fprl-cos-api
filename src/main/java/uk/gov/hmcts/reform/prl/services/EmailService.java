@@ -1,14 +1,14 @@
-package uk.gov.hmcts.reform.fprl.services;
+package uk.gov.hmcts.reform.prl.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.fprl.config.EmailTemplatesConfig;
-import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
-import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
-import uk.gov.hmcts.reform.fprl.utils.EmailObfuscator;
+import uk.gov.hmcts.reform.prl.config.EmailTemplatesConfig;
+import uk.gov.hmcts.reform.prl.models.LanguagePreference;
+import uk.gov.hmcts.reform.prl.models.dto.notify.EmailTemplateVars;
+import uk.gov.hmcts.reform.prl.models.email.EmailTemplateNames;
+import uk.gov.hmcts.reform.prl.utils.EmailObfuscator;
 import uk.gov.service.notify.NotificationClient;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;

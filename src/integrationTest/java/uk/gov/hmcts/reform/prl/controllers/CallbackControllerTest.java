@@ -1,12 +1,12 @@
-package uk.gov.hmcts.reform.fprl.controllers;
+package uk.gov.hmcts.reform.prl.controllers;
 
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
-import uk.gov.hmcts.reform.fprl.IntegrationTest;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
-import uk.gov.hmcts.reform.fprl.util.CosApiClient;
+import uk.gov.hmcts.reform.prl.IntegrationTest;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CallbackRequest;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.util.CosApiClient;
 
 public class CallbackControllerTest extends IntegrationTest {
 

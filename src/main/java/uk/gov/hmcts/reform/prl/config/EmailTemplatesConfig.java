@@ -1,11 +1,11 @@
-package uk.gov.hmcts.reform.fprl.config;
+package uk.gov.hmcts.reform.prl.config;
 
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
-import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
-import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
+import uk.gov.hmcts.reform.prl.models.LanguagePreference;
+import uk.gov.hmcts.reform.prl.models.email.EmailTemplateNames;
 
 import java.util.HashMap;
 import java.util.Map;

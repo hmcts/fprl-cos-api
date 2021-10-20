@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.springfunctional;
+package uk.gov.hmcts.reform.prl.springfunctional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -12,19 +12,19 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import uk.gov.hmcts.reform.fprl.Application;
-import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
-import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
-import uk.gov.hmcts.reform.fprl.services.EmailService;
-import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
-import uk.gov.hmcts.reform.fprl.utils.TestConstants;
+import uk.gov.hmcts.reform.prl.Application;
+import uk.gov.hmcts.reform.prl.models.LanguagePreference;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CallbackRequest;
+import uk.gov.hmcts.reform.prl.models.email.EmailTemplateNames;
+import uk.gov.hmcts.reform.prl.services.EmailService;
+import uk.gov.hmcts.reform.prl.utils.CaseDetailsProvider;
+import uk.gov.hmcts.reform.prl.utils.TestConstants;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static uk.gov.hmcts.reform.fprl.tasks.emails.ExampleEmailTaskTest.expectedPersonalisation;
+import static uk.gov.hmcts.reform.prl.tasks.emails.ExampleEmailTaskTest.expectedPersonalisation;
 
 @ContextConfiguration(classes = Application.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

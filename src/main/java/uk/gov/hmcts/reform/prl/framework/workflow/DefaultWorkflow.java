@@ -1,8 +1,8 @@
-package uk.gov.hmcts.reform.fprl.framework.workflow;
+package uk.gov.hmcts.reform.prl.framework.workflow;
 
-import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.framework.task.Task;
+import uk.gov.hmcts.reform.prl.framework.exceptions.TaskException;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.framework.task.Task;
 
 public class DefaultWorkflow<T> extends AbstractWorkflow<T> {
 

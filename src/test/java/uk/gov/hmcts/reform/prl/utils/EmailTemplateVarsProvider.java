@@ -1,7 +1,7 @@
-package uk.gov.hmcts.reform.fprl.utils;
+package uk.gov.hmcts.reform.prl.utils;
 
 import lombok.NoArgsConstructor;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
+import uk.gov.hmcts.reform.prl.models.dto.notify.EmailTemplateVars;
 
 @NoArgsConstructor
 public class EmailTemplateVarsProvider {

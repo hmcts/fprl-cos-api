@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.clients;
+package uk.gov.hmcts.reform.prl.clients;
 
 import au.com.dius.pact.consumer.dsl.DslPart;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
@@ -21,7 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import uk.gov.hmcts.reform.fprl.models.dto.payment.PbaOrganisationResponse;
+import uk.gov.hmcts.reform.prl.models.dto.payment.PbaOrganisationResponse;
 
 import static io.pactfoundation.consumer.dsl.LambdaDsl.newJsonBody;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -58,7 +58,7 @@ public class PbaClientConsumerTest {
         Executor.closeIdleConnections();
     }
 
-    @Pact(provider = "referenceData_organisationalExternalPbas", consumer = "fprl_cos")
+    @Pact(provider = "referenceData_organisationalExternalPbas", consumer = "prl_cos")
     RequestResponsePact getOrganisationalPbasReferenceData(PactDslWithProvider builder) {
         // @formatter:off
         return builder

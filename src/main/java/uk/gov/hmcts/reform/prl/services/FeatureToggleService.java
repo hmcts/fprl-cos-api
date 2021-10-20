@@ -1,10 +1,10 @@
-package uk.gov.hmcts.reform.fprl.services;
+package uk.gov.hmcts.reform.prl.services;
 
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.fprl.config.Features;
+import uk.gov.hmcts.reform.prl.config.Features;
 
 import java.util.HashMap;
 import java.util.Map;

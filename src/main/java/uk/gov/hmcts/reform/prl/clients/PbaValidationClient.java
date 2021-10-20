@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.clients;
+package uk.gov.hmcts.reform.prl.clients;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -6,8 +6,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import uk.gov.hmcts.reform.fprl.config.consts.CustomHttpHeaders;
-import uk.gov.hmcts.reform.fprl.models.dto.payment.PbaOrganisationResponse;
+import uk.gov.hmcts.reform.prl.config.consts.CustomHttpHeaders;
+import uk.gov.hmcts.reform.prl.models.dto.payment.PbaOrganisationResponse;
 
 @FeignClient(name = "pba-validation-client", url = "${pba.validation.service.api.baseurl}")
 public interface PbaValidationClient {

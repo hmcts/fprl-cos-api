@@ -1,14 +1,14 @@
-package uk.gov.hmcts.reform.fprl.tasks.emails;
+package uk.gov.hmcts.reform.prl.tasks.emails;
 
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
-import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
-import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
-import uk.gov.hmcts.reform.fprl.services.EmailService;
-import uk.gov.hmcts.reform.fprl.tasks.emails.generics.SendEmailTask;
+import uk.gov.hmcts.reform.prl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.prl.models.LanguagePreference;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.models.dto.notify.CitizenEmail;
+import uk.gov.hmcts.reform.prl.models.dto.notify.EmailTemplateVars;
+import uk.gov.hmcts.reform.prl.models.email.EmailTemplateNames;
+import uk.gov.hmcts.reform.prl.services.EmailService;
+import uk.gov.hmcts.reform.prl.tasks.emails.generics.SendEmailTask;
 
 @Component
 public class ExampleEmailTask extends SendEmailTask {

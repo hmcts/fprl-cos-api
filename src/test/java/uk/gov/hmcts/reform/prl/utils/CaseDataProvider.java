@@ -1,8 +1,8 @@
-package uk.gov.hmcts.reform.fprl.utils;
+package uk.gov.hmcts.reform.prl.utils;
 
 import lombok.NoArgsConstructor;
-import uk.gov.hmcts.reform.fprl.models.YesOrNo;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.prl.models.YesOrNo;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseData;
 
 @NoArgsConstructor
 public class CaseDataProvider {

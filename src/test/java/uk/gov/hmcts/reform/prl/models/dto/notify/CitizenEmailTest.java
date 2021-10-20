@@ -1,17 +1,17 @@
-package uk.gov.hmcts.reform.fprl.models.dto.notify;
+package uk.gov.hmcts.reform.prl.models.dto.notify;
 
 import org.junit.Test;
-import uk.gov.hmcts.reform.fprl.utils.CitizenEmailProvider;
-import uk.gov.hmcts.reform.fprl.utils.EmailTemplateVarsProvider;
+import uk.gov.hmcts.reform.prl.utils.CitizenEmailProvider;
+import uk.gov.hmcts.reform.prl.utils.EmailTemplateVarsProvider;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_CASE_ID;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_PETITIONER_NAME;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_RESPONDENT_NAME;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_CASE_ID;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_PETITIONER_NAME;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_RESPONDENT_NAME;
 
 public class CitizenEmailTest {
 

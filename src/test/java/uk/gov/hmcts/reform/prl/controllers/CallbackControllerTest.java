@@ -1,17 +1,17 @@
-package uk.gov.hmcts.reform.fprl.controllers;
+package uk.gov.hmcts.reform.prl.controllers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.WorkflowResult;
-import uk.gov.hmcts.reform.fprl.services.ExampleService;
-import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
-import uk.gov.hmcts.reform.fprl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CallbackRequest;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.WorkflowResult;
+import uk.gov.hmcts.reform.prl.services.ExampleService;
+import uk.gov.hmcts.reform.prl.utils.CaseDetailsProvider;
+import uk.gov.hmcts.reform.prl.workflows.ValidateMiamApplicationOrExemptionWorkflow;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;

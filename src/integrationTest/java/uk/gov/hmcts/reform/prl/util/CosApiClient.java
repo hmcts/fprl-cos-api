@@ -1,10 +1,10 @@
-package uk.gov.hmcts.reform.fprl.util;
+package uk.gov.hmcts.reform.prl.util;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CallbackRequest;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CallbackRequest;
 
 @FeignClient(name = "case-orchestration-api", url = "${case.orchestration.service.base.uri}")
 public interface CosApiClient {

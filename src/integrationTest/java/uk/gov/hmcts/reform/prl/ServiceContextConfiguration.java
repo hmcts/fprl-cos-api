@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl;
+package uk.gov.hmcts.reform.prl;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +24,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import uk.gov.hmcts.reform.fprl.util.CosApiClient;
+import uk.gov.hmcts.reform.prl.util.CosApiClient;
 
 @Configuration
 @PropertySource("classpath:application.properties")

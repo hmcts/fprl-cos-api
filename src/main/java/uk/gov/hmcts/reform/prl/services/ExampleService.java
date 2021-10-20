@@ -1,12 +1,12 @@
-package uk.gov.hmcts.reform.fprl.services;
+package uk.gov.hmcts.reform.prl.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.fprl.config.Features;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.WorkflowException;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
-import uk.gov.hmcts.reform.fprl.workflows.ExampleWorkflow;
+import uk.gov.hmcts.reform.prl.config.Features;
+import uk.gov.hmcts.reform.prl.framework.exceptions.WorkflowException;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.workflows.ExampleWorkflow;
 
 /**
  * This class is added only as a java service example. It can be deleted when more services is added.

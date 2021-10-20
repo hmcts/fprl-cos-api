@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models.dto.notify;
+package uk.gov.hmcts.reform.prl.models.dto.notify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

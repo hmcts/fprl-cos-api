@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  fprl-cos:
+  prl-cos:
     build:
       context: .
       args:

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.services;
+package uk.gov.hmcts.reform.prl.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
@@ -8,11 +8,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import uk.gov.hmcts.reform.fprl.config.EmailTemplatesConfig;
-import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
-import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
-import uk.gov.hmcts.reform.fprl.utils.CitizenEmailProvider;
+import uk.gov.hmcts.reform.prl.config.EmailTemplatesConfig;
+import uk.gov.hmcts.reform.prl.models.LanguagePreference;
+import uk.gov.hmcts.reform.prl.models.dto.notify.CitizenEmail;
+import uk.gov.hmcts.reform.prl.models.email.EmailTemplateNames;
+import uk.gov.hmcts.reform.prl.utils.CitizenEmailProvider;
 import uk.gov.service.notify.NotificationClient;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
@@ -26,10 +26,10 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_CASE_ID;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_EMAIL;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_PETITIONER_NAME;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_RESPONDENT_NAME;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_CASE_ID;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_EMAIL;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_PETITIONER_NAME;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_RESPONDENT_NAME;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EmailServiceTest {

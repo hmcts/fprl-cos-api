@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models.dto.ccd;
+package uk.gov.hmcts.reform.prl.models.dto.ccd;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uk.gov.hmcts.reform.fprl.models.YesOrNo;
+import uk.gov.hmcts.reform.prl.models.YesOrNo;
 
 @Data
 @AllArgsConstructor

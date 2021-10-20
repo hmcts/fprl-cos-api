@@ -1,12 +1,12 @@
-package uk.gov.hmcts.reform.fprl.utils;
+package uk.gov.hmcts.reform.prl.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.mockito.InOrder;
-import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
-import uk.gov.hmcts.reform.fprl.framework.exceptions.TaskException;
-import uk.gov.hmcts.reform.fprl.framework.task.Task;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.prl.framework.exceptions.TaskException;
+import uk.gov.hmcts.reform.prl.framework.task.Task;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;

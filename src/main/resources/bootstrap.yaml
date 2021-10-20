@@ -5,4 +5,4 @@ spring:
       prefixed: true
       paths: /mnt/secrets/div
       aliases:
-        fprl.uk-gov-notify-api-key: UK_GOV_NOTIFY_API_KEY
+        prl.uk-gov-notify-api-key: UK_GOV_NOTIFY_API_KEY

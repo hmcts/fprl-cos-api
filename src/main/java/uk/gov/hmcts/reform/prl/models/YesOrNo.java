@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.fprl.models;
+package uk.gov.hmcts.reform.prl.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

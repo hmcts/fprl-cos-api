@@ -1,7 +1,7 @@
-package uk.gov.hmcts.reform.fprl.models.email;
+package uk.gov.hmcts.reform.prl.models.email;
 
 import org.junit.Test;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.CitizenEmail;
+import uk.gov.hmcts.reform.prl.models.dto.notify.CitizenEmail;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

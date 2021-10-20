@@ -1,10 +1,10 @@
-package uk.gov.hmcts.reform.fprl.utils;
+package uk.gov.hmcts.reform.prl.utils;
 
 import lombok.NoArgsConstructor;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
 
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_CASE_ID;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_CASE_ID;
 
 @NoArgsConstructor
 public class CaseDetailsProvider {

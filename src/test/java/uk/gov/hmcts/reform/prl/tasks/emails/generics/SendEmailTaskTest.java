@@ -1,28 +1,28 @@
-package uk.gov.hmcts.reform.fprl.tasks.emails.generics;
+package uk.gov.hmcts.reform.prl.tasks.emails.generics;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import uk.gov.hmcts.reform.fprl.framework.context.TaskContext;
-import uk.gov.hmcts.reform.fprl.models.LanguagePreference;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseData;
-import uk.gov.hmcts.reform.fprl.models.dto.ccd.CaseDetails;
-import uk.gov.hmcts.reform.fprl.models.dto.notify.EmailTemplateVars;
-import uk.gov.hmcts.reform.fprl.models.email.EmailTemplateNames;
-import uk.gov.hmcts.reform.fprl.services.EmailService;
-import uk.gov.hmcts.reform.fprl.utils.CaseDataProvider;
-import uk.gov.hmcts.reform.fprl.utils.CaseDetailsProvider;
-import uk.gov.hmcts.reform.fprl.utils.EmailTemplateVarsProvider;
-import uk.gov.hmcts.reform.fprl.utils.TaskContextProvider;
+import uk.gov.hmcts.reform.prl.framework.context.TaskContext;
+import uk.gov.hmcts.reform.prl.models.LanguagePreference;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseData;
+import uk.gov.hmcts.reform.prl.models.dto.ccd.CaseDetails;
+import uk.gov.hmcts.reform.prl.models.dto.notify.EmailTemplateVars;
+import uk.gov.hmcts.reform.prl.models.email.EmailTemplateNames;
+import uk.gov.hmcts.reform.prl.services.EmailService;
+import uk.gov.hmcts.reform.prl.utils.CaseDataProvider;
+import uk.gov.hmcts.reform.prl.utils.CaseDetailsProvider;
+import uk.gov.hmcts.reform.prl.utils.EmailTemplateVarsProvider;
+import uk.gov.hmcts.reform.prl.utils.TaskContextProvider;
 
 import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
-import static uk.gov.hmcts.reform.fprl.utils.TestConstants.TEST_EMAIL;
+import static uk.gov.hmcts.reform.prl.utils.TestConstants.TEST_EMAIL;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SendEmailTaskTest {

@@ -19,7 +19,7 @@ public class ExampleEmailTask extends SendEmailTask {
 
     @Override
     protected String getRecipientEmail(CaseDetails caseDetails) {
-        return "fprl_caseworker_solicitor@mailinator.com";
+        return "prl_caseworker_solicitor@mailinator.com";
     }
 
     @Override

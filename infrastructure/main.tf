@@ -19,15 +19,9 @@ module "key-vault" {
   resource_group_name     = azurerm_resource_group.rg.name
   common_tags             = var.common_tags
   managed_identity_object_id = var.managed_identity_object_id
-  product_group_object_id = "882d8512-688b-48b1-8ce2-05fd49d90478"
+  product_group_object_id = "6806038a-4c48-4481-945d-a8fc3daf9b74"
   create_managed_identity = true
 }
- 
-data "azurerm_client_config" "current" {
-}
 
-output "object_id" {
-  value = data.azurerm_client_config.current.object_id
-}
   
   

@@ -18,7 +18,6 @@ module "key-vault" {
   object_id               = var.jenkins_AAD_objectId
   resource_group_name     = azurerm_resource_group.rg.name
   common_tags             = var.common_tags
-  create_managed_identity = true
   managed_identity_object_id = var.managed_identity_object_id
   product_group_object_id = "882d8512-688b-48b1-8ce2-05fd49d90478"
 }

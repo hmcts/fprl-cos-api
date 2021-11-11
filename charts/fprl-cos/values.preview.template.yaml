@@ -2,3 +2,10 @@ java:
   # Don't modify below here
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
+  environment:
+    RUNS_LOCALLY: false
+    keyVaults:
+      fprl:
+        resourceGroup: fprl
+        secrets:
+          - fprl-idam-client-secret

@@ -11,3 +11,8 @@ java:
   environment:
     PRD_API_BASEURL: "http://rd-professional-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal"
     RUNS_LOCALLY: false
+  keyVaults:
+    fprl:
+      resourceGroup: fprl
+      secrets:
+        - fprl-idam-client-secret

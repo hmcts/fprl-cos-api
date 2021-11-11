@@ -22,3 +22,12 @@ module "key-vault" {
   product_group_object_id = "882d8512-688b-48b1-8ce2-05fd49d90478"
   create_managed_identity = true
 }
+ 
+data "azurerm_client_config" "current" {
+}
+
+output "object_id" {
+  value = data.azurerm_client_config.current.object_id
+}
+  
+  

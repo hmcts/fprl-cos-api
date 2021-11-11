@@ -23,5 +23,20 @@ module "key-vault" {
   create_managed_identity = true
 }
 
-  
-  
+data "azurerm_key_vault" "fprl_vault" {
+  name                = "fprl-${var.env}"
+  resource_group_name = "fprl-${var.env}"
+}
+
+data "azurerm_key_vault_secret" "fprl_key_vault" {
+  key_vault_id = "${data.azurerm_key_vault.fprl_vault.id}"
+  name = "fprl-key-vault"
+}
+
+data "azurerm_key_vault_secret" "fprl_idam_secret" {
+  name = "fprl-idam-client-secret"
+  key_vault_id = data.azurerm_key_vault.fprl_vault.id
+}
+
+
+
